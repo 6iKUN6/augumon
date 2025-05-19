@@ -1,6 +1,5 @@
 <template>
   <div class="w-full">
-    <!-- 英雄区 -->
     <div class="flex-between p-[60px_80px] bg-bg-2">
       <div class="flex-1 max-w-500px">
         <h1 class="text-5xl font-bold mb-4 text-text-1">AI驱动的设计新体验</h1>
@@ -29,7 +28,7 @@
       <div class="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-8">
         <div class="card-base card-hover p-6 text-center">
           <div class="text-[36px] mb-4 text-primary">
-            <a-icon-experiment />
+            <icon-experiment />
           </div>
           <h3 class="text-title text-xl mb-3">AI生成设计</h3>
           <p class="text-desc leading-1.5">
@@ -38,7 +37,7 @@
         </div>
         <div class="card-base card-hover p-6 text-center">
           <div class="text-[36px] mb-4 text-primary">
-            <a-icon-apps />
+            <icon-apps />
           </div>
           <h3 class="text-title text-xl mb-3">丰富素材库</h3>
           <p class="text-desc leading-1.5">
@@ -47,7 +46,7 @@
         </div>
         <div class="card-base card-hover p-6 text-center">
           <div class="text-[36px] mb-4 text-primary">
-            <a-icon-robot />
+            <icon-robot />
           </div>
           <h3 class="text-title text-xl mb-3">智能助手</h3>
           <p class="text-desc leading-1.5">
@@ -56,7 +55,7 @@
         </div>
         <div class="card-base card-hover p-6 text-center">
           <div class="text-[36px] mb-4 text-primary">
-            <a-icon-share-alt />
+            <icon-share-alt />
           </div>
           <h3 class="text-title text-xl mb-3">社区分享</h3>
           <p class="text-desc leading-1.5">

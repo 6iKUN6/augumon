@@ -1,73 +1,52 @@
 <template>
   <div>
     <LoginModal
-      :visible="showLoginModal"
-      @update:visible="showLoginModal = $event"
+      :visible="modalStore.login"
+      @update:visible="modalStore.closeWhichModel(ModalState.login)"
       @switch-to-register="switchToRegister"
       @login="handleLogin"
-      @cancel="closeAllModals"
+      @cancel="modalStore.closeAllModel()"
     />
     <RegisterModal
-      :visible="showRegisterModal"
-      @update:visible="showRegisterModal = $event"
+      :visible="modalStore.register"
+      @update:visible="modalStore.closeWhichModel(ModalState.register)"
       @switch-to-login="switchToLogin"
       @register="handleRegister"
-      @cancel="closeAllModals"
+      @cancel="modalStore.closeAllModel()"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { onMounted } from "vue";
 import LoginModal from "./LoginModal.vue";
 import RegisterModal from "./RegisterModal.vue";
 import { useAuthStore } from "../stores/auth";
+import useModalStore, { ModalState } from "../stores/modal";
 
 // 初始化认证状态
 const authStore = useAuthStore();
+const modalStore = useModalStore();
+
 onMounted(() => {
   authStore.initialize();
 });
 
-// 模态框状态
-const showLoginModal = ref(false);
-const showRegisterModal = ref(false);
-
-// 打开登录模态框
-const openLogin = () => {
-  showRegisterModal.value = false;
-  showLoginModal.value = true;
-};
-
-// 打开注册模态框
-const openRegister = () => {
-  showLoginModal.value = false;
-  showRegisterModal.value = true;
-};
-
-// 关闭所有模态框
-const closeAllModals = () => {
-  showLoginModal.value = false;
-  showRegisterModal.value = false;
-};
-
 // 切换至登录
 const switchToLogin = () => {
-  showRegisterModal.value = false;
-  showLoginModal.value = true;
+  modalStore.beOnlyOneModel("login");
 };
 
 // 切换至注册
 const switchToRegister = () => {
-  showLoginModal.value = false;
-  showRegisterModal.value = true;
+  modalStore.beOnlyOneModel("register");
 };
 
 // 处理登录提交
 const handleLogin = (formData: LoginForm) => {
   const success = authStore.login(formData);
   if (success) {
-    closeAllModals();
+    modalStore.closeAllModel();
   }
 };
 
@@ -75,7 +54,7 @@ const handleLogin = (formData: LoginForm) => {
 const handleRegister = (formData: RegisterForm) => {
   const success = authStore.register(formData);
   if (success) {
-    closeAllModals();
+    modalStore.closeAllModel();
   }
 };
 
@@ -93,11 +72,4 @@ interface RegisterForm {
   confirmPassword: string;
   agreement: boolean;
 }
-
-// 暴露方法给父组件使用
-defineExpose({
-  openLogin,
-  openRegister,
-  closeAllModals,
-});
 </script>

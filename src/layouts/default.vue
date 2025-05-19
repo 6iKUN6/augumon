@@ -34,27 +34,27 @@ const activeSiderIndex = ref(0);
 const siderMenuItems = ref([
   {
     title: "首页",
-    icon: "a-icon-home",
+    icon: "icon-home",
   },
   {
     title: "设计区域",
-    icon: "a-icon-edit",
+    icon: "icon-edit",
   },
   {
     title: "我的设计",
-    icon: "a-icon-file",
+    icon: "icon-file",
   },
   {
     title: "素材库",
-    icon: "a-icon-image",
+    icon: "icon-image",
   },
   {
     title: "AI助手",
-    icon: "a-icon-robot",
+    icon: "icon-robot",
   },
   {
     title: "设置",
-    icon: "a-icon-settings",
+    icon: "icon-settings",
   },
 ]);
 

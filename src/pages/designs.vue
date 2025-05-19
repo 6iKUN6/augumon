@@ -51,13 +51,13 @@
                 class="absolute top-10px right-10px flex gap-8px opacity-0 transition-opacity duration-300 hover:opacity-100"
               >
                 <a-button shape="circle" type="primary">
-                  <template #icon><a-icon-heart /></template>
+                  <template #icon><icon-heart /></template>
                 </a-button>
                 <a-button shape="circle" type="primary">
-                  <template #icon><a-icon-star /></template>
+                  <template #icon><icon-star /></template>
                 </a-button>
                 <a-button shape="circle" type="primary">
-                  <template #icon><a-icon-copy /></template>
+                  <template #icon><icon-copy /></template>
                 </a-button>
               </div>
             </div>
@@ -77,14 +77,10 @@
               </div>
               <div class="flex gap-16px text-14px text-[var(--color-text-3)]">
                 <span
-                  ><a-icon-heart /> {{ Math.floor(Math.random() * 100) }}</span
+                  ><icon-heart /> {{ Math.floor(Math.random() * 100) }}</span
                 >
-                <span
-                  ><a-icon-star /> {{ Math.floor(Math.random() * 50) }}</span
-                >
-                <span
-                  ><a-icon-eye /> {{ Math.floor(Math.random() * 1000) }}</span
-                >
+                <span><icon-star /> {{ Math.floor(Math.random() * 50) }}</span>
+                <span><icon-eye /> {{ Math.floor(Math.random() * 1000) }}</span>
               </div>
             </div>
           </div>

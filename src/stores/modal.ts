@@ -5,19 +5,21 @@ export enum ModalState {
   register = "register", //注册
 }
 
+type ModelType = keyof typeof ModalState;
+
 const useModalStore = defineStore("modal", () => {
-  const visibleState = reactive<Record<ModalState, boolean>>({
+  const visibleState = reactive<Record<ModelType, boolean>>({
     login: false,
     register: false,
   });
 
   const activeModalCount = ref(0);
 
-  const openWhichModel = (name: ModalState) => {
+  const openWhichModel = (name: ModelType) => {
     visibleState[name] = true;
   };
 
-  const closeWhichModel = (name: ModalState) => {
+  const closeWhichModel = (name: ModelType) => {
     visibleState[name] = false;
   };
 
@@ -27,7 +29,7 @@ const useModalStore = defineStore("modal", () => {
     });
   };
 
-  const beOnlyOneModel = (keepName: ModalState) => {
+  const beOnlyOneModel = (keepName: ModelType) => {
     Object.keys(visibleState).forEach((key) => {
       if (key !== keepName) {
         visibleState[key as ModalState] = false;

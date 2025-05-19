@@ -6,7 +6,7 @@
       <div class="flex-between p-16px border-b border-[var(--color-border)]">
         <h2 class="m-0 text-lg">AI助手</h2>
         <a-button type="outline" shape="circle">
-          <template #icon><a-icon-plus /></template>
+          <template #icon><icon-plus /></template>
         </a-button>
       </div>
       <div class="flex-1 overflow-y-auto p-8px">
@@ -37,7 +37,7 @@
             shape="circle"
             class="opacity-0 transition-opacity duration-200 hover:opacity-100"
           >
-            <template #icon><a-icon-delete /></template>
+            <template #icon><icon-delete /></template>
           </a-button>
         </div>
       </div>
@@ -48,7 +48,7 @@
         <h2 class="m-0 text-lg">{{ currentChatTitle }}</h2>
         <div>
           <a-button type="primary">
-            <template #icon><a-icon-download /></template>
+            <template #icon><icon-download /></template>
             导出对话
           </a-button>
         </div>
@@ -60,7 +60,7 @@
           class="text-center p-40px-20px max-w-600px mx-auto"
         >
           <div class="text-48px text-[var(--color-primary)] mb-16px">
-            <a-icon-robot />
+            <icon-robot />
           </div>
           <h2>AI设计助手</h2>
           <p>我可以帮您生成设计创意、改进设计、推荐颜色搭配和布局方案。</p>
@@ -140,18 +140,18 @@
           @search="sendMessage"
         >
           <template #button-icon>
-            <a-icon-send />
+            <icon-send />
           </template>
         </a-input-search>
         <div class="flex justify-start mt-8px gap-8px">
           <a-button type="text" shape="circle">
-            <template #icon><a-icon-image /></template>
+            <template #icon><icon-image /></template>
           </a-button>
           <a-button type="text" shape="circle">
-            <template #icon><a-icon-attachment /></template>
+            <template #icon><icon-attachment /></template>
           </a-button>
           <a-button type="text" shape="circle">
-            <template #icon><a-icon-voice /></template>
+            <template #icon><icon-voice /></template>
           </a-button>
         </div>
       </div>

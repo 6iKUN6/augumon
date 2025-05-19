@@ -4,7 +4,7 @@
   >
     <div class="flex items-center">
       <div class="cursor-pointer mr-4 md:hidden" @click="toggleSidebar">
-        <a-icon-menu />
+        <icon-menu />
       </div>
       <h1 class="text-[#165DFF] text-xl font-bold">AI设计器</h1>
     </div>
@@ -38,7 +38,7 @@
         />
         <a-dropdown trigger="click">
           <a-button type="text" class="flex items-center">
-            <a-icon-notification class="text-lg" />
+            <icon-notification class="text-lg" />
           </a-button>
           <template #content>
             <a-doption>通知1: 您有新消息</a-doption>
@@ -71,24 +71,22 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, inject } from "vue";
+import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useAuthStore } from "../stores/auth";
+import useModalStore, { ModalState } from "../stores/modal";
 
 const route = useRoute();
 const showSearch = ref(true);
 const authStore = useAuthStore();
-
-// 使用注入的登录/注册方法
-const openLogin = inject("openLogin") as (() => void) | undefined;
-const openRegister = inject("openRegister") as (() => void) | undefined;
+const modalStore = useModalStore();
 
 const openLoginModal = () => {
-  if (openLogin) openLogin();
+  modalStore.openWhichModel(ModalState.login);
 };
 
 const openRegisterModal = () => {
-  if (openRegister) openRegister();
+  modalStore.openWhichModel(ModalState.register);
 };
 
 const menuItems = [

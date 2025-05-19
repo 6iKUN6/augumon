@@ -7,7 +7,9 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "pnpm exec eslint . --ext .js,.ts,.vue",
+    "lint:fix": "pnpm exec eslint . --ext .js,.ts,.vue --fix"
   },
   "dependencies": {
     "@leafer-in/editor": "^1.6.2",

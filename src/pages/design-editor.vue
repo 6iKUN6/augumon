@@ -13,11 +13,11 @@
       <template #footer>
         <div class="flex-between">
           <a-button type="primary" class="flex-1">
-            <template #icon><a-icon-save /></template>
+            <template #icon><icon-save /></template>
             保存
           </a-button>
           <a-button class="ml-2">
-            <template #icon><a-icon-eye /></template>
+            <template #icon><icon-eye /></template>
             预览
           </a-button>
         </div>
@@ -33,19 +33,19 @@
         <div class="flex items-center">
           <a-button-group>
             <a-button>
-              <template #icon><a-icon-undo /></template>
+              <template #icon><icon-undo /></template>
             </a-button>
             <a-button>
-              <template #icon><a-icon-redo /></template>
+              <template #icon><icon-redo /></template>
             </a-button>
           </a-button-group>
           <a-divider direction="vertical" />
           <a-button-group class="ml-4">
             <a-button>
-              <template #icon><a-icon-zoom-in /></template>
+              <template #icon><icon-zoom-in /></template>
             </a-button>
             <a-button>
-              <template #icon><a-icon-zoom-out /></template>
+              <template #icon><icon-zoom-out /></template>
             </a-button>
           </a-button-group>
         </div>
@@ -53,11 +53,11 @@
         <div>
           <a-button-group>
             <a-button type="primary">
-              <template #icon><a-icon-robot /></template>
+              <template #icon><icon-robot /></template>
               AI优化
             </a-button>
             <a-button type="primary">
-              <template #icon><a-icon-export /></template>
+              <template #icon><icon-export /></template>
               导出
             </a-button>
           </a-button-group>
@@ -192,12 +192,12 @@ import LayoutSider from "../layouts/sider.vue";
 const toolbarCollapsed = ref(false);
 const activeToolIndex = ref(0);
 const toolItems = ref([
-  { title: "选择工具", icon: "a-icon-select-all" },
-  { title: "文本工具", icon: "a-icon-font-colors" },
-  { title: "形状工具", icon: "a-icon-bg-colors" },
-  { title: "图片工具", icon: "a-icon-image" },
-  { title: "设计模板", icon: "a-icon-copy" },
-  { title: "智能生成", icon: "a-icon-robot" },
+  { title: "选择工具", icon: "icon-select-all" },
+  { title: "文本工具", icon: "icon-font-colors" },
+  { title: "形状工具", icon: "icon-bg-colors" },
+  { title: "图片工具", icon: "icon-image" },
+  { title: "设计模板", icon: "icon-copy" },
+  { title: "智能生成", icon: "icon-robot" },
 ]);
 
 // 右侧属性面板状态
