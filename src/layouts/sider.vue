@@ -21,7 +21,7 @@
           shape="circle"
           @click="$emit('add-item')"
         >
-          <template #icon><a-icon-plus /></template>
+          <template #icon><icon-plus /></template>
         </a-button>
         <a-button
           v-if="collapsible"
@@ -29,8 +29,8 @@
           @click="$emit('update:collapsed', !collapsed)"
         >
           <template #icon>
-            <a-icon-menu-fold v-if="!collapsed" />
-            <a-icon-menu-unfold v-else />
+            <icon-menu-fold v-if="!collapsed" />
+            <icon-menu-unfold v-else />
           </template>
         </a-button>
       </div>
@@ -83,7 +83,7 @@
               class="opacity-0 transition-opacity duration-200 hover:opacity-100"
               @click.stop="$emit('delete-item', index)"
             >
-              <template #icon><a-icon-delete /></template>
+              <template #icon><icon-delete /></template>
             </a-button>
           </div>
         </div>
@@ -106,11 +106,11 @@
         <a-input-search placeholder="搜索..." search-button />
         <div class="flex justify-between">
           <a-button type="text">
-            <template #icon><a-icon-settings /></template>
+            <template #icon><icon-settings /></template>
             设置
           </a-button>
           <a-button type="text">
-            <template #icon><a-icon-help /></template>
+            <template #icon><icon-help /></template>
             帮助
           </a-button>
         </div>
