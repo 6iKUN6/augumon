@@ -22,9 +22,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import LayoutHeader from "./header.vue";
-import LayoutSider from "./sider.vue";
+import { ref } from 'vue';
+import LayoutHeader from './header.vue';
+import LayoutSider from './sider.vue';
 
 const showSidebar = ref(false);
 const siderCollapsed = ref(false);
@@ -33,28 +33,28 @@ const activeSiderIndex = ref(0);
 // 侧边栏菜单项
 const siderMenuItems = ref([
   {
-    title: "首页",
-    icon: "icon-home",
+    title: '首页',
+    icon: 'icon-home',
   },
   {
-    title: "设计区域",
-    icon: "icon-edit",
+    title: '设计区域',
+    icon: 'icon-edit',
   },
   {
-    title: "我的设计",
-    icon: "icon-file",
+    title: '我的设计',
+    icon: 'icon-file',
   },
   {
-    title: "素材库",
-    icon: "icon-image",
+    title: '素材库',
+    icon: 'icon-image',
   },
   {
-    title: "AI助手",
-    icon: "icon-robot",
+    title: 'AI助手',
+    icon: 'icon-robot',
   },
   {
-    title: "设置",
-    icon: "icon-settings",
+    title: '设置',
+    icon: 'icon-settings',
   },
 ]);
 

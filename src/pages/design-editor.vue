@@ -27,9 +27,7 @@
     <!-- 主编辑区域 -->
     <div class="flex-1 flex flex-col bg-bg-1 relative">
       <!-- 顶部操作区 -->
-      <div
-        class="h-50px flex-between border-b border-[var(--color-border)] p-16px"
-      >
+      <div class="h-50px flex-between border-b border-[var(--color-border)] p-16px">
         <div class="flex items-center">
           <a-button-group>
             <a-button>
@@ -66,10 +64,7 @@
 
       <!-- 设计画布区域 -->
       <div class="flex-1 overflow-auto p-16px flex-center bg-[#f2f3f5]">
-        <div
-          class="card-base w-800px h-600px"
-          style="resize: both; overflow: auto"
-        >
+        <div class="card-base w-800px h-600px" style="resize: both; overflow: auto">
           <!-- 画布内容 -->
           <div class="w-full h-full flex-center">
             <span class="text-text-3 text-xl">画布区域</span>
@@ -92,34 +87,19 @@
             <div class="p-16px">
               <a-form :model="styleForm" layout="vertical">
                 <a-form-item field="width" label="宽度">
-                  <a-input-number
-                    v-model="styleForm.width"
-                    mode="button"
-                    min="0"
-                  />
+                  <a-input-number v-model="styleForm.width" mode="button" min="0" />
                 </a-form-item>
                 <a-form-item field="height" label="高度">
-                  <a-input-number
-                    v-model="styleForm.height"
-                    mode="button"
-                    min="0"
-                  />
+                  <a-input-number v-model="styleForm.height" mode="button" min="0" />
                 </a-form-item>
                 <a-form-item field="background" label="背景颜色">
                   <a-color-picker v-model="styleForm.background" />
                 </a-form-item>
                 <a-form-item field="border" label="边框">
-                  <a-input
-                    v-model="styleForm.border"
-                    placeholder="1px solid #000"
-                  />
+                  <a-input v-model="styleForm.border" placeholder="1px solid #000" />
                 </a-form-item>
                 <a-form-item field="borderRadius" label="圆角">
-                  <a-input-number
-                    v-model="styleForm.borderRadius"
-                    mode="button"
-                    min="0"
-                  />
+                  <a-input-number v-model="styleForm.borderRadius" mode="button" min="0" />
                 </a-form-item>
               </a-form>
             </div>
@@ -128,18 +108,10 @@
             <div class="p-16px">
               <a-form :model="textForm" layout="vertical">
                 <a-form-item field="content" label="内容">
-                  <a-textarea
-                    v-model="textForm.content"
-                    placeholder="请输入文本内容"
-                  />
+                  <a-textarea v-model="textForm.content" placeholder="请输入文本内容" />
                 </a-form-item>
                 <a-form-item field="fontSize" label="字体大小">
-                  <a-input-number
-                    v-model="textForm.fontSize"
-                    mode="button"
-                    min="12"
-                    max="72"
-                  />
+                  <a-input-number v-model="textForm.fontSize" mode="button" min="12" max="72" />
                 </a-form-item>
                 <a-form-item field="fontWeight" label="字体粗细">
                   <a-select v-model="textForm.fontWeight">
@@ -185,19 +157,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import LayoutSider from "../layouts/sider.vue";
+import { ref } from 'vue';
+import LayoutSider from '../layouts/sider.vue';
 
 // 工具栏状态
 const toolbarCollapsed = ref(false);
 const activeToolIndex = ref(0);
 const toolItems = ref([
-  { title: "选择工具", icon: "icon-select-all" },
-  { title: "文本工具", icon: "icon-font-colors" },
-  { title: "形状工具", icon: "icon-bg-colors" },
-  { title: "图片工具", icon: "icon-image" },
-  { title: "设计模板", icon: "icon-copy" },
-  { title: "智能生成", icon: "icon-robot" },
+  { title: '选择工具', icon: 'icon-select-all' },
+  { title: '文本工具', icon: 'icon-font-colors' },
+  { title: '形状工具', icon: 'icon-bg-colors' },
+  { title: '图片工具', icon: 'icon-image' },
+  { title: '设计模板', icon: 'icon-copy' },
+  { title: '智能生成', icon: 'icon-robot' },
 ]);
 
 // 右侧属性面板状态
@@ -207,17 +179,17 @@ const propsPanelCollapsed = ref(false);
 const styleForm = ref({
   width: 300,
   height: 200,
-  background: "#ffffff",
-  border: "1px solid #d9d9d9",
+  background: '#ffffff',
+  border: '1px solid #d9d9d9',
   borderRadius: 4,
 });
 
 // 文本表单
 const textForm = ref({
-  content: "示例文本",
+  content: '示例文本',
   fontSize: 16,
-  fontWeight: "normal",
-  fontColor: "#333333",
+  fontWeight: 'normal',
+  fontColor: '#333333',
 });
 
 const selectTool = (index: number) => {

@@ -1,9 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
-  compatibilityDate: "2024-11-01",
+  compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  srcDir: "src",
+  srcDir: 'src',
   app: {},
   vite: {
     plugins: [],
@@ -11,7 +11,7 @@ export default defineNuxtConfig({
   unocss: {
     nuxtLayers: true, //可以启用 nuxtLayers 选项，这样 Nuxt 会自动合并每个 Nuxt 层中的 uno.config 文件
   },
-  css: ["@arco-design/web-vue/dist/arco.css"],
+  css: ['@arco-design/web-vue/dist/arco.css'],
   // fonts: {
   //   families: [
   //     {
@@ -39,22 +39,28 @@ export default defineNuxtConfig({
     fonts: false,
   },
   imports: {
-    dirs: ["stores"],
+    dirs: ['stores'],
   },
   modules: [
-    "@nuxt/content",
-    "@nuxt/eslint",
-    "@nuxt/icon",
-    "@nuxt/image",
-    "@nuxt/scripts",
-    "@nuxt/test-utils",
+    '@nuxt/content',
+    '@nuxt/eslint',
+    '@nuxt/icon',
+    '@nuxt/image',
+    '@nuxt/scripts',
+    '@nuxt/test-utils',
     // "@nuxt/fonts",
-    "@nuxt/ui",
-    "@unocss/nuxt",
-    "@pinia/nuxt",
-    "@pinia-plugin-persistedstate/nuxt",
+    '@nuxt/ui',
+    '@unocss/nuxt',
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
   ],
+  eslint: {
+    config: {
+      // ESM 项目可能需要显式声明
+      useEslintrc: true,
+    },
+  },
   routeRules: {
-    "/": { redirect: "/home" },
+    '/': { redirect: '/home' },
   },
 });
