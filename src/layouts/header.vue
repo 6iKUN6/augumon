@@ -1,7 +1,5 @@
 <template>
-  <a-layout-header
-    class="flex-between px-5 h-[60px] bg-bg-2 border-b border-border"
-  >
+  <a-layout-header class="flex-between px-5 h-[60px] bg-bg-2 border-b border-border">
     <div class="flex items-center">
       <div class="cursor-pointer mr-4 md:hidden" @click="toggleSidebar">
         <icon-menu />
@@ -10,16 +8,8 @@
     </div>
 
     <div class="flex-1 hidden md:flex-center">
-      <a-menu
-        mode="horizontal"
-        :selected-keys="[activeMenu]"
-        class="bg-transparent"
-      >
-        <a-menu-item
-          v-for="item in menuItems"
-          :key="item.key"
-          class="px-20px leading-[60px]"
-        >
+      <a-menu mode="horizontal" :selected-keys="[activeMenu]" class="bg-transparent">
+        <a-menu-item v-for="item in menuItems" :key="item.key" class="px-20px leading-[60px]">
           <NuxtLink :to="item.path" class="no-underline text-inherit">
             {{ item.title }}
           </NuxtLink>
@@ -60,9 +50,7 @@
           </a-dropdown>
         </template>
         <template v-else>
-          <a-button type="text" class="btn-text" @click="openLoginModal"
-            >登录</a-button
-          >
+          <a-button type="text" class="btn-text" @click="openLoginModal">登录</a-button>
           <a-button type="primary" @click="openRegisterModal">注册</a-button>
         </template>
       </a-space>
@@ -71,10 +59,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import { useRoute } from "vue-router";
-import { useAuthStore } from "../stores/auth";
-import useModalStore, { ModalState } from "../stores/modal";
+import { computed, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import { useAuthStore } from '../stores/auth';
+import useModalStore, { ModalState } from '../stores/modal';
 
 const route = useRoute();
 const showSearch = ref(true);
@@ -90,29 +78,29 @@ const openRegisterModal = () => {
 };
 
 const menuItems = [
-  { key: "home", title: "首页", path: "/home" },
-  { key: "designs", title: "设计广场", path: "/designs" },
-  { key: "materials", title: "素材库", path: "/materials" },
-  { key: "ai-assistant", title: "AI助手", path: "/ai-assistant" },
+  { key: 'home', title: '首页', path: '/home' },
+  { key: 'designs', title: '设计广场', path: '/designs' },
+  { key: 'materials', title: '素材库', path: '/materials' },
+  { key: 'ai-assistant', title: 'AI助手', path: '/ai-assistant' },
 ];
 
 const activeMenu = computed(() => {
   const path = route.path;
-  if (path.startsWith("/home")) return "home";
-  if (path.startsWith("/designs")) return "designs";
-  if (path.startsWith("/materials")) return "materials";
-  if (path.startsWith("/ai-assistant")) return "ai-assistant";
-  return "";
+  if (path.startsWith('/home')) return 'home';
+  if (path.startsWith('/designs')) return 'designs';
+  if (path.startsWith('/materials')) return 'materials';
+  if (path.startsWith('/ai-assistant')) return 'ai-assistant';
+  return '';
 });
 
 // 通知父组件切换侧边栏显示状态
-const emit = defineEmits(["toggle-sidebar"]);
+const emit = defineEmits(['toggle-sidebar']);
 const toggleSidebar = () => {
-  emit("toggle-sidebar");
+  emit('toggle-sidebar');
 };
 
 const onSearch = (value: string) => {
-  console.log("搜索:", value);
+  console.log('搜索:', value);
 };
 
 // 登出处理

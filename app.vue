@@ -9,5 +9,5 @@
 </template>
 
 <script setup lang="ts">
-import AuthManager from "./src/components/AuthManager.vue";
+import AuthManager from './src/components/AuthManager.vue';
 </script>

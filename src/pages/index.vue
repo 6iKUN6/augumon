@@ -2,6 +2,6 @@
 // 自动重定向到首页
 const router = useRouter();
 onMounted(() => {
-  router.push("/home");
+  router.push('/home');
 });
 </script>

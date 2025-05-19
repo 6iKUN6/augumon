@@ -10,12 +10,7 @@
             style="width: 300px"
             @search="onSearch"
           />
-          <a-select
-            v-model="filter.type"
-            placeholder="素材类型"
-            style="width: 120px"
-            allow-clear
-          >
+          <a-select v-model="filter.type" placeholder="素材类型" style="width: 120px" allow-clear>
             <a-option value="all">全部类型</a-option>
             <a-option value="template">模板</a-option>
             <a-option value="image">图片</a-option>
@@ -29,11 +24,7 @@
 
     <a-tabs default-active-key="1">
       <a-tab-pane key="1" title="模板">
-        <a-grid
-          :col-gap="16"
-          :row-gap="16"
-          :cols="{ xs: 1, sm: 2, md: 3, lg: 4, xl: 6, xxl: 6 }"
-        >
+        <a-grid :col-gap="16" :row-gap="16" :cols="{ xs: 1, sm: 2, md: 3, lg: 4, xl: 6, xxl: 6 }">
           <a-grid-item v-for="i in 12" :key="i">
             <div
               class="bg-[var(--color-bg-2)] rounded-lg overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition-all duration-300 h-full flex flex-col hover:translate-y-[-4px] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)]"
@@ -46,9 +37,7 @@
                 />
               </div>
               <div class="p-3 flex flex-col flex-1">
-                <div
-                  class="font-bold mb-2 overflow-hidden text-ellipsis whitespace-nowrap"
-                >
+                <div class="font-bold mb-2 overflow-hidden text-ellipsis whitespace-nowrap">
                   精美模板 {{ i }}
                 </div>
                 <div class="flex gap-2 mb-3">
@@ -66,11 +55,7 @@
       </a-tab-pane>
 
       <a-tab-pane key="2" title="图片">
-        <a-grid
-          :cols="{ xs: 2, sm: 3, md: 4, lg: 5, xl: 6, xxl: 8 }"
-          :col-gap="16"
-          :row-gap="16"
-        >
+        <a-grid :cols="{ xs: 2, sm: 3, md: 4, lg: 5, xl: 6, xxl: 8 }" :col-gap="16" :row-gap="16">
           <a-grid-item v-for="i in 18" :key="i">
             <div class="card-base card-hover">
               <div class="relative overflow-hidden">
@@ -93,100 +78,77 @@
       </a-tab-pane>
 
       <a-tab-pane key="3" title="图标">
-        <div
-          class="grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-16px py-16px"
-        >
-          <div
-            v-for="i in 30"
-            :key="i"
-            class="flex flex-col items-center cursor-pointer"
-          >
+        <div class="grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-16px py-16px">
+          <div v-for="i in 30" :key="i" class="flex flex-col items-center cursor-pointer">
             <div
               class="flex-center w-60px h-60px rounded-8px bg-[var(--color-bg-2)] text-24px text-[var(--color-primary)] transition-all duration-200 hover:scale-110 hover:bg-[var(--color-primary-light-1)]"
             >
               <component :is="`icon-${getRandomIcon(i)}`" />
             </div>
-            <div class="mt-8px text-xs text-[var(--color-text-2)]">
-              图标名称
-            </div>
+            <div class="mt-8px text-xs text-[var(--color-text-2)]">图标名称</div>
           </div>
         </div>
       </a-tab-pane>
 
       <a-tab-pane key="4" title="形状">
-        <div
-          class="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-16px py-16px"
-        >
-          <div
-            v-for="i in 20"
-            :key="i"
-            class="flex flex-col items-center cursor-pointer"
-          >
+        <div class="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-16px py-16px">
+          <div v-for="i in 20" :key="i" class="flex flex-col items-center cursor-pointer">
             <div
               class="w-80px h-80px flex-center bg-[var(--color-primary-light-4)] transition-transform duration-200 hover:scale-110"
               :class="{
                 'rounded-0': i % 5 === 0,
                 'rounded-8px': i % 5 === 1,
                 'rounded-full': i % 5 === 2,
-                'clip-path-[polygon(50%_0%,100%_50%,50%_100%,0%_50%)]':
-                  i % 5 === 3,
-                'clip-path-[polygon(50%_0%,100%_38%,82%_100%,18%_100%,0%_38%)]':
-                  i % 5 === 4,
+                'clip-path-[polygon(50%_0%,100%_50%,50%_100%,0%_50%)]': i % 5 === 3,
+                'clip-path-[polygon(50%_0%,100%_38%,82%_100%,18%_100%,0%_38%)]': i % 5 === 4,
               }"
             ></div>
-            <div class="mt-8px text-xs text-[var(--color-text-2)]">
-              形状 {{ i }}
-            </div>
+            <div class="mt-8px text-xs text-[var(--color-text-2)]">形状 {{ i }}</div>
           </div>
         </div>
       </a-tab-pane>
     </a-tabs>
 
     <div class="flex justify-center mt-10">
-      <a-pagination
-        :total="100"
-        show-total
-        show-jumper
-        @change="onPageChange"
-      />
+      <a-pagination :total="100" show-total show-jumper @change="onPageChange" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive } from 'vue';
 
 const filter = reactive({
-  type: "all",
+  type: 'all',
 });
 
 const onSearch = (value: string) => {
-  console.log("搜索:", value);
+  console.log('搜索:', value);
 };
 
 const onPageChange = (page: number) => {
-  console.log("页码变化:", page);
+  console.log('页码变化:', page);
 };
 
 const iconTypes = [
-  "experiment",
-  "apps",
-  "robot",
-  "share-alt",
-  "heart",
-  "star",
-  "copy",
-  "eye",
-  "home",
-  "user",
-  "setting",
-  "file",
-  "cloud",
-  "image",
-  "calendar",
-  "message",
-  "notification",
-  "search",
+  'experiment',
+  'apps',
+  'robot',
+  'share-alt',
+  'heart',
+  'star',
+  'copy',
+  'eye',
+  'home',
+  'user',
+  'setting',
+  'file',
+  'cloud',
+  'image',
+  'calendar',
+  'message',
+  'notification',
+  'search',
 ];
 
 const getRandomIcon = (seed: number) => {

@@ -22,9 +22,7 @@
 
     <!-- 特性介绍 -->
     <div class="p-[80px] bg-bg-1">
-      <h2 class="text-center text-4xl font-bold mb-10 text-text-1">
-        强大功能，简单操作
-      </h2>
+      <h2 class="text-center text-4xl font-bold mb-10 text-text-1">强大功能，简单操作</h2>
       <div class="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-8">
         <div class="card-base card-hover p-6 text-center">
           <div class="text-[36px] mb-4 text-primary">
@@ -40,39 +38,29 @@
             <icon-apps />
           </div>
           <h3 class="text-title text-xl mb-3">丰富素材库</h3>
-          <p class="text-desc leading-1.5">
-            上千种模板和设计元素，满足您各种场景的设计需求
-          </p>
+          <p class="text-desc leading-1.5">上千种模板和设计元素，满足您各种场景的设计需求</p>
         </div>
         <div class="card-base card-hover p-6 text-center">
           <div class="text-[36px] mb-4 text-primary">
             <icon-robot />
           </div>
           <h3 class="text-title text-xl mb-3">智能助手</h3>
-          <p class="text-desc leading-1.5">
-            AI助手提供设计建议和自动调整，让您的作品更专业
-          </p>
+          <p class="text-desc leading-1.5">AI助手提供设计建议和自动调整，让您的作品更专业</p>
         </div>
         <div class="card-base card-hover p-6 text-center">
           <div class="text-[36px] mb-4 text-primary">
             <icon-share-alt />
           </div>
           <h3 class="text-title text-xl mb-3">社区分享</h3>
-          <p class="text-desc leading-1.5">
-            与设计社区分享您的作品，获取灵感和反馈
-          </p>
+          <p class="text-desc leading-1.5">与设计社区分享您的作品，获取灵感和反馈</p>
         </div>
       </div>
     </div>
 
     <!-- 设计案例展示 -->
     <div class="p-[80px] bg-bg-2">
-      <h2 class="text-center text-4xl font-bold mb-10 text-text-1">
-        优秀作品展示
-      </h2>
-      <div
-        class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 justify-items-center"
-      >
+      <h2 class="text-center text-4xl font-bold mb-10 text-text-1">优秀作品展示</h2>
+      <div class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 justify-items-center">
         <a-card v-for="i in 6" :key="i" :style="{ width: '300px' }" hoverable>
           <template #cover>
             <img
