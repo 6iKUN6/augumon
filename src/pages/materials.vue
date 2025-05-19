@@ -83,7 +83,7 @@
                   class="absolute inset-0 bg-black/40 flex-center opacity-0 transition-opacity duration-300 hover:opacity-100"
                 >
                   <a-button shape="circle" type="primary" size="mini">
-                    <template #icon><a-icon-plus /></template>
+                    <template #icon><icon-plus /></template>
                   </a-button>
                 </div>
               </div>
@@ -104,7 +104,7 @@
             <div
               class="flex-center w-60px h-60px rounded-8px bg-[var(--color-bg-2)] text-24px text-[var(--color-primary)] transition-all duration-200 hover:scale-110 hover:bg-[var(--color-primary-light-1)]"
             >
-              <component :is="`a-icon-${getRandomIcon(i)}`" />
+              <component :is="`icon-${getRandomIcon(i)}`" />
             </div>
             <div class="mt-8px text-xs text-[var(--color-text-2)]">
               图标名称

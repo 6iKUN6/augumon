@@ -28,7 +28,7 @@
       <div class="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-8">
         <div class="card-base card-hover p-6 text-center">
           <div class="text-[36px] mb-4 text-primary">
-            <a-icon-experiment />
+            <icon-experiment />
           </div>
           <h3 class="text-title text-xl mb-3">AI生成设计</h3>
           <p class="text-desc leading-1.5">
@@ -37,7 +37,7 @@
         </div>
         <div class="card-base card-hover p-6 text-center">
           <div class="text-[36px] mb-4 text-primary">
-            <a-icon-apps />
+            <icon-apps />
           </div>
           <h3 class="text-title text-xl mb-3">丰富素材库</h3>
           <p class="text-desc leading-1.5">
@@ -46,7 +46,7 @@
         </div>
         <div class="card-base card-hover p-6 text-center">
           <div class="text-[36px] mb-4 text-primary">
-            <a-icon-robot />
+            <icon-robot />
           </div>
           <h3 class="text-title text-xl mb-3">智能助手</h3>
           <p class="text-desc leading-1.5">
@@ -55,7 +55,7 @@
         </div>
         <div class="card-base card-hover p-6 text-center">
           <div class="text-[36px] mb-4 text-primary">
-            <a-icon-share-alt />
+            <icon-share-alt />
           </div>
           <h3 class="text-title text-xl mb-3">社区分享</h3>
           <p class="text-desc leading-1.5">
