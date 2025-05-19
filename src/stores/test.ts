@@ -1,6 +1,6 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
-const useTestStore = defineStore("test", () => {
+const useTestStore = defineStore('test', () => {
   const count = ref(0);
   return {
     count,

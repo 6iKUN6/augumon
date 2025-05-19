@@ -1,4 +1,4 @@
-import { App } from "leafer-ui";
+import { App } from 'leafer-ui';
 
 class Draw {
   private app: App;

@@ -8,8 +8,11 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "pnpm exec eslint . --ext .js,.ts,.vue",
-    "lint:fix": "pnpm exec eslint . --ext .js,.ts,.vue --fix"
+    "lint": "pnpm exec eslint . --ext .js,.ts,.tsx,.vue",
+    "lint:fix": "pnpm exec eslint . --ext .js,.ts,.tsx,.vue --fix",
+    "format": "prettier --write \"**/*.{js,ts,tsx,vue,css,scss,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,tsx,vue,css,scss,json,md}\"",
+    "prepare": "husky"
   },
   "dependencies": {
     "@leafer-in/editor": "^1.6.2",
@@ -27,7 +30,6 @@
     "@pinia/nuxt": "^0.11.0",
     "@unhead/vue": "^2.0.3",
     "@vueuse/core": "^13.1.0",
-    "eslint": "^9.0.0",
     "leafer-ui": "^1.6.1",
     "nuxt": "^3.15.4",
     "pinia": "^3.0.2",
@@ -35,10 +37,25 @@
     "vue": "latest",
     "vue-router": "latest"
   },
-  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0",
   "devDependencies": {
     "@arco-design/web-vue": "^2.57.0",
     "@unocss/nuxt": "^66.1.1",
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.5.3",
     "unocss": "^66.1.1"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0",
+  "lint-staged": {
+    "*.{js,ts,tsx,vue,css,scss,json,md}": [
+      "pnpm lint",
+      "pnpm format"
+    ]
   }
 }

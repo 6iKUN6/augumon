@@ -18,11 +18,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import LoginModal from "./LoginModal.vue";
-import RegisterModal from "./RegisterModal.vue";
-import { useAuthStore } from "../stores/auth";
-import useModalStore, { ModalState } from "../stores/modal";
+import { onMounted } from 'vue';
+import LoginModal from './LoginModal.vue';
+import RegisterModal from './RegisterModal.vue';
+import { useAuthStore } from '../stores/auth';
+import useModalStore, { ModalState } from '../stores/modal';
 
 // 初始化认证状态
 const authStore = useAuthStore();
@@ -34,12 +34,12 @@ onMounted(() => {
 
 // 切换至登录
 const switchToLogin = () => {
-  modalStore.beOnlyOneModel("login");
+  modalStore.beOnlyOneModel('login');
 };
 
 // 切换至注册
 const switchToRegister = () => {
-  modalStore.beOnlyOneModel("register");
+  modalStore.beOnlyOneModel('register');
 };
 
 // 处理登录提交

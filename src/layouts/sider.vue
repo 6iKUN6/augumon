@@ -15,19 +15,10 @@
     <div class="flex-between p-16px border-b border-[var(--color-border)]">
       <h2 class="m-0 text-lg truncate">{{ title }}</h2>
       <div class="flex items-center">
-        <a-button
-          v-if="showAddButton"
-          type="outline"
-          shape="circle"
-          @click="$emit('add-item')"
-        >
+        <a-button v-if="showAddButton" type="outline" shape="circle" @click="$emit('add-item')">
           <template #icon><icon-plus /></template>
         </a-button>
-        <a-button
-          v-if="collapsible"
-          type="text"
-          @click="$emit('update:collapsed', !collapsed)"
-        >
+        <a-button v-if="collapsible" type="text" @click="$emit('update:collapsed', !collapsed)">
           <template #icon>
             <icon-menu-fold v-if="!collapsed" />
             <icon-menu-unfold v-else />
@@ -49,29 +40,18 @@
             }"
             @click="$emit('select-item', index)"
           >
-            <a-avatar
-              v-if="item.avatar"
-              :style="{ backgroundColor: item.color || '#165DFF' }"
-            >
+            <a-avatar v-if="item.avatar" :style="{ backgroundColor: item.color || '#165DFF' }">
               {{ item.avatar }}
             </a-avatar>
-            <div
-              v-else-if="item.icon"
-              class="text-xl text-[var(--color-primary)] mr-2"
-            >
+            <div v-else-if="item.icon" class="text-xl text-[var(--color-primary)] mr-2">
               <component :is="item.icon"></component>
             </div>
 
             <div class="ml-12px flex-1 overflow-hidden">
-              <div
-                class="font-500 whitespace-nowrap overflow-hidden text-ellipsis"
-              >
+              <div class="font-500 whitespace-nowrap overflow-hidden text-ellipsis">
                 {{ item.title }}
               </div>
-              <div
-                v-if="item.description"
-                class="text-xs text-[var(--color-text-3)] mt-4px"
-              >
+              <div v-if="item.description" class="text-xs text-[var(--color-text-3)] mt-4px">
                 {{ item.description }}
               </div>
             </div>
@@ -90,18 +70,12 @@
       </slot>
     </div>
 
-    <div
-      v-if="$slots.footer"
-      class="p-16px border-t border-[var(--color-border)]"
-    >
+    <div v-if="$slots.footer" class="p-16px border-t border-[var(--color-border)]">
       <slot name="footer"></slot>
     </div>
 
     <!-- 默认底部区域，如果没有提供自定义footer -->
-    <div
-      v-else-if="showDefaultFooter"
-      class="p-16px border-t border-[var(--color-border)]"
-    >
+    <div v-else-if="showDefaultFooter" class="p-16px border-t border-[var(--color-border)]">
       <a-space direction="vertical" fill>
         <a-input-search placeholder="搜索..." search-button />
         <div class="flex justify-between">
@@ -133,7 +107,7 @@ interface MenuItem {
 const props = defineProps({
   title: {
     type: String,
-    default: "侧边栏",
+    default: '侧边栏',
   },
   menuItems: {
     type: Array as () => MenuItem[],
@@ -157,8 +131,8 @@ const props = defineProps({
   },
   position: {
     type: String,
-    default: "left",
-    validator: (value: string) => ["left", "right"].includes(value),
+    default: 'left',
+    validator: (value: string) => ['left', 'right'].includes(value),
   },
   showAddButton: {
     type: Boolean,
@@ -188,5 +162,5 @@ const {
   showDefaultFooter,
 } = props;
 
-defineEmits(["update:collapsed", "select-item", "add-item", "delete-item"]);
+defineEmits(['update:collapsed', 'select-item', 'add-item', 'delete-item']);
 </script>

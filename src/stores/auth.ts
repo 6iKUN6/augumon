@@ -1,5 +1,5 @@
-import { defineStore } from "pinia";
-import { ref, computed } from "vue";
+import { defineStore } from 'pinia';
+import { ref, computed } from 'vue';
 
 export interface UserInfo {
   id: string;
@@ -8,7 +8,7 @@ export interface UserInfo {
   avatar?: string;
 }
 
-export const useAuthStore = defineStore("auth", () => {
+export const useAuthStore = defineStore('auth', () => {
   // 状态
   const token = ref<string | null>(null);
   const userInfo = ref<UserInfo | null>(null);
@@ -19,8 +19,8 @@ export const useAuthStore = defineStore("auth", () => {
   // 初始化 - 从本地存储加载数据
   const initialize = () => {
     if (import.meta.client) {
-      const storedToken = localStorage.getItem("token");
-      const storedUser = localStorage.getItem("user");
+      const storedToken = localStorage.getItem('token');
+      const storedUser = localStorage.getItem('user');
 
       if (storedToken) {
         token.value = storedToken;
@@ -30,25 +30,21 @@ export const useAuthStore = defineStore("auth", () => {
         try {
           userInfo.value = JSON.parse(storedUser);
         } catch {
-          console.error("Failed to parse user data from localStorage");
+          console.error('Failed to parse user data from localStorage');
         }
       }
     }
   };
 
   // 登录
-  const login = (userData: {
-    username: string;
-    password: string;
-    remember: boolean;
-  }) => {
+  const login = (userData: { username: string; password: string; remember: boolean }) => {
     // 这里是模拟请求，实际项目中应调用 API
-    console.log("Login data:", userData);
+    console.log('Login data:', userData);
 
     // 模拟获取token和用户信息
-    const newToken = "mock-token-" + Math.random().toString(36).substr(2);
+    const newToken = 'mock-token-' + Math.random().toString(36).substr(2);
     const newUser: UserInfo = {
-      id: "1",
+      id: '1',
       username: userData.username,
       email: `${userData.username}@example.com`,
     };
@@ -59,8 +55,8 @@ export const useAuthStore = defineStore("auth", () => {
 
     // 保存到本地存储
     if (import.meta.client) {
-      localStorage.setItem("token", newToken);
-      localStorage.setItem("user", JSON.stringify(newUser));
+      localStorage.setItem('token', newToken);
+      localStorage.setItem('user', JSON.stringify(newUser));
     }
 
     return true;
@@ -75,12 +71,12 @@ export const useAuthStore = defineStore("auth", () => {
     agreement: boolean;
   }) => {
     // 这里是模拟请求，实际项目中应调用 API
-    console.log("Register data:", userData);
+    console.log('Register data:', userData);
 
     // 模拟获取token和用户信息
-    const newToken = "mock-token-" + Math.random().toString(36).substr(2);
+    const newToken = 'mock-token-' + Math.random().toString(36).substr(2);
     const newUser: UserInfo = {
-      id: "1",
+      id: '1',
       username: userData.username,
       email: userData.email,
     };
@@ -91,8 +87,8 @@ export const useAuthStore = defineStore("auth", () => {
 
     // 保存到本地存储
     if (import.meta.client) {
-      localStorage.setItem("token", newToken);
-      localStorage.setItem("user", JSON.stringify(newUser));
+      localStorage.setItem('token', newToken);
+      localStorage.setItem('user', JSON.stringify(newUser));
     }
 
     return true;
@@ -105,8 +101,8 @@ export const useAuthStore = defineStore("auth", () => {
 
     // 清除本地存储
     if (import.meta.client) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
     }
   };
 

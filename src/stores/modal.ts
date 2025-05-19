@@ -1,13 +1,13 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
 export enum ModalState {
-  login = "login", //登录
-  register = "register", //注册
+  login = 'login', //登录
+  register = 'register', //注册
 }
 
 type ModelType = keyof typeof ModalState;
 
-const useModalStore = defineStore("modal", () => {
+const useModalStore = defineStore('modal', () => {
   const visibleState = reactive<Record<ModelType, boolean>>({
     login: false,
     register: false,
