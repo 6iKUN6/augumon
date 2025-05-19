@@ -1,6 +1,5 @@
 <template>
   <div class="w-full">
-    <!-- 英雄区 -->
     <div class="flex-between p-[60px_80px] bg-bg-2">
       <div class="flex-1 max-w-500px">
         <h1 class="text-5xl font-bold mb-4 text-text-1">AI驱动的设计新体验</h1>
