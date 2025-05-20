@@ -10,21 +10,21 @@
     "postinstall": "nuxt prepare",
     "lint": "pnpm exec eslint . --ext .js,.ts,.tsx,.vue",
     "lint:fix": "pnpm exec eslint . --ext .js,.ts,.tsx,.vue --fix",
-    "format": "prettier --write \"**/*.{js,ts,tsx,vue,css,scss,json,md}\"",
-    "format:check": "prettier --check \"**/*.{js,ts,tsx,vue,css,scss,json,md}\"",
-    "prepare": "husky"
+    "format": "prettier --write \"**/*.{js,cjs,mjs,ts,tsx,vue,css,scss,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,cjs,mjs,ts,tsx,vue,css,scss,json,md}\"",
+    "prepare": "husky",
+    "commit": "git-cz"
   },
   "dependencies": {
     "@leafer-in/editor": "^1.6.2",
     "@leafer-in/filter": "^1.6.2",
     "@leafer-in/resize": "^1.6.2",
+    "@leafer-in/viewport": "^1.6.2",
     "@nuxt/content": "3.5.0",
-    "@nuxt/eslint": "1.3.0",
     "@nuxt/fonts": "^0.11.2",
     "@nuxt/icon": "1.12.0",
     "@nuxt/image": "1.10.0",
     "@nuxt/scripts": "0.11.6",
-    "@nuxt/test-utils": "3.17.2",
     "@nuxt/ui": "3.0.2",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
     "@pinia/nuxt": "^0.11.0",
@@ -33,18 +33,23 @@
     "leafer-ui": "^1.6.1",
     "nuxt": "^3.15.4",
     "pinia": "^3.0.2",
-    "typescript": "^5.6.3",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
     "@arco-design/web-vue": "^2.57.0",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@nuxt/eslint": "^1.4.0",
+    "@nuxt/test-utils": "^3.19.0",
     "@unocss/nuxt": "^66.1.1",
+    "commitizen": "^4.3.1",
+    "cz-git": "^1.11.1",
     "eslint": "^9.0.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.4.0",
     "husky": "^9.1.7",
     "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
     "unocss": "^66.1.1"
   },
   "engines": {
@@ -57,5 +62,10 @@
       "pnpm lint",
       "pnpm format"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
   }
 }
