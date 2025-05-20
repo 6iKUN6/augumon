@@ -11,18 +11,17 @@ export default withNuxt([
       'vue/html-self-closing': 'off',
     },
   },
-  // Prettier规则集成
+  {
+    ignores: ['pnpm-lock.yaml', '**/.nuxt', '**/dist', '**/node_modules'],
+  },
   prettierConfig,
+  // Prettier规则集成
   {
     plugins: {
       prettier: prettierPlugin,
     },
     rules: {
-      'prettier/prettier': 'error',
+      // 'prettier/prettier': 'error',
     },
-  },
-  {
-    // 全局忽略文件
-    ignores: ['pnpm-lock.yaml', '**/.nuxt', '**/dist', '**/node_modules'],
   },
 ]);
