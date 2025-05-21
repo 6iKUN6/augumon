@@ -56,6 +56,7 @@
       </a-space>
     </div>
   </a-layout-header>
+  <AuthManager />
 </template>
 
 <script setup lang="ts">
