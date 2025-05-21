@@ -52,7 +52,7 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@unocss/nuxt',
     '@pinia/nuxt',
-    '@pinia-plugin-persistedstate/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
   ],
   eslint: {
     config: {
@@ -62,5 +62,37 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/': { redirect: '/home' },
+  },
+  content: {
+    // 基本配置
+    documentDriven: true,
+    navigation: {
+      fields: ['title', 'description', '_path'],
+    },
+    // 内容目录，默认是 'content'
+    sources: {
+      content: {
+        driver: 'fs',
+        base: './content',
+      },
+      // 可以添加更多内容源
+    },
+    // Markdown 解析配置
+    markdown: {
+      toc: {
+        depth: 3,
+        searchDepth: 3,
+      },
+      rehypePlugins: [
+        // 可添加 rehype 插件
+      ],
+      remarkPlugins: [
+        // 可添加 remark 插件
+      ],
+    },
+    // 高亮配置
+    highlight: {
+      theme: 'github-dark',
+    },
   },
 });

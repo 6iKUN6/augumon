@@ -21,18 +21,17 @@
     "@leafer-in/resize": "^1.6.2",
     "@leafer-in/viewport": "^1.6.2",
     "@nuxt/content": "3.5.0",
-    "@nuxt/fonts": "^0.11.2",
     "@nuxt/icon": "1.12.0",
     "@nuxt/image": "1.10.0",
     "@nuxt/scripts": "0.11.6",
     "@nuxt/ui": "3.0.2",
-    "@pinia-plugin-persistedstate/nuxt": "^1.2.1",
     "@pinia/nuxt": "^0.11.0",
     "@unhead/vue": "^2.0.3",
     "@vueuse/core": "^13.1.0",
     "leafer-ui": "^1.6.1",
     "nuxt": "^3.15.4",
     "pinia": "^3.0.2",
+    "pinia-plugin-persistedstate": "^4.3.0",
     "vue": "latest",
     "vue-router": "latest"
   },
@@ -48,9 +47,12 @@
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.4.0",
     "husky": "^9.1.7",
+    "less": "^4.3.0",
+    "less-loader": "^12.3.0",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3",
-    "unocss": "^66.1.1"
+    "unocss": "^66.1.1",
+    "vitest": "^3.1.4"
   },
   "engines": {
     "node": ">=18",
