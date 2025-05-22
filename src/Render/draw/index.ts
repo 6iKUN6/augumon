@@ -14,9 +14,9 @@ class Draw {
   private skyApp: Leafer;
   constructor() {
     this.app = new App({});
-    this.ground = new Ground();
-    this.sky = new Sky();
-    this.tree = new Tree();
+    this.ground = new Ground({});
+    this.sky = new Sky({});
+    this.tree = new Tree({});
 
     this.app.add(this.ground.getGround());
     this.app.add(this.tree.getTree());
