@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [],
   },
-  css: ['@arco-design/web-vue/dist/arco.css', '~/assets/css/tailwind.css'],
+  css: ['@arco-design/web-vue/dist/arco.css'],
   imports: {
     dirs: ['stores'],
   },
@@ -21,29 +21,22 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
   ],
   tailwindcss: {
-    configPath: '~/tailwind.config.js',
+    configPath: './tailwind.config.js',
+    cssPath: './src/assets/css/globals.css',
     exposeConfig: true,
-    injectPosition: 'first',
     viewer: false,
   },
   eslint: {
     config: {
       // ESM 项目可能需要显式声明
-      useEslintrc: true,
+      // useEslintrc: true,
     },
   },
   routeRules: {
     '/': { redirect: '/home' },
   },
   shadcn: {
-    /**
-     * Prefix for all the imported component
-     */
     prefix: '',
-    /**
-     * Directory that the component lives in.
-     * @default "./src/components/ui"
-     */
-    componentDir: './src/components/ui',
+    componentDir: 'src/components/ui',
   },
 });

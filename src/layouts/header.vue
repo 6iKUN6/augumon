@@ -1,56 +1,69 @@
 <template>
-  <a-layout-header class="flex-between px-5 h-[60px] bg-bg-2 border-b border-border">
+  <header class="flex items-center justify-between px-5 h-[60px] bg-background border-b">
     <div class="flex items-center">
       <h1 class="text-xl font-bold">
-        <span class="text-[#00B42A]">X</span><span class="text-[#333]">TOOL</span>
+        <span class="text-[#00B42A]">X</span><span class="text-foreground">TOOL</span>
       </h1>
     </div>
 
-    <div class="flex items-center">
-      <a-space>
-        <a-button-group>
-          <a-button type="outline" size="small">
-            <icon-folder-add />
-            打开本地项目
-          </a-button>
-          <a-dropdown trigger="click">
-            <a-button type="primary" size="small">
-              <icon-plus />
+    <div class="flex items-center space-x-4">
+      <div class="flex items-center space-x-2">
+        <Button variant="outline" size="sm">
+          <icon-folder-add class="mr-2 h-4 w-4" />
+          打开本地项目
+        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button size="sm">
+              <icon-plus class="mr-2 h-4 w-4" />
               创建新项目
-            </a-button>
-            <template #content>
-              <a-doption>Web项目</a-doption>
-              <a-doption>移动应用</a-doption>
-              <a-doption>空白项目</a-doption>
-            </template>
-          </a-dropdown>
-        </a-button-group>
-        <template v-if="authStore.isLoggedIn">
-          <a-dropdown trigger="click">
-            <a-avatar :style="{ backgroundColor: '#165DFF' }">
-              {{ authStore.userInfo?.username.charAt(0).toUpperCase() }}
-            </a-avatar>
-            <template #content>
-              <a-doption>个人中心</a-doption>
-              <a-doption>我的作品</a-doption>
-              <a-doption>账户设置</a-doption>
-              <a-doption @click="handleLogout">退出登录</a-doption>
-            </template>
-          </a-dropdown>
-        </template>
-        <template v-else>
-          <a-button type="text" class="btn-text" @click="openLoginModal">登录</a-button>
-          <a-button type="primary" @click="openRegisterModal">注册</a-button>
-        </template>
-      </a-space>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem>Web项目</DropdownMenuItem>
+            <DropdownMenuItem>移动应用</DropdownMenuItem>
+            <DropdownMenuItem>空白项目</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
+      <template v-if="authStore.isLoggedIn">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Avatar
+              class="h-8 w-8"
+              :style="{ backgroundColor: '#165DFF' }"
+              :fallback="authStore.userInfo?.username.charAt(0).toUpperCase()"
+            />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem>个人中心</DropdownMenuItem>
+            <DropdownMenuItem>我的作品</DropdownMenuItem>
+            <DropdownMenuItem>账户设置</DropdownMenuItem>
+            <DropdownMenuItem @click="handleLogout">退出登录</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </template>
+      <template v-else>
+        <Button variant="ghost" @click="openLoginModal">登录</Button>
+        <Button @click="openRegisterModal">注册</Button>
+      </template>
     </div>
-  </a-layout-header>
+  </header>
   <AuthManager />
 </template>
 
 <script setup lang="ts">
 import { useAuthStore } from '../stores/auth';
 import useModalStore, { ModalState } from '../stores/modal';
+import { Button } from '@/components/ui/button';
+import { Avatar } from '@/components/ui/avatar';
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from '@/components/ui/dropdown-menu';
 
 const authStore = useAuthStore();
 const modalStore = useModalStore();

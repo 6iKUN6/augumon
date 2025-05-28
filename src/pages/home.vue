@@ -9,7 +9,7 @@
             <p class="text-lg mb-4">
               Meet Atomm, your next all-in-one design platform for crafting.
             </p>
-            <a-button type="outline" class="w-36 text-white border-white">Visit Now</a-button>
+            <Button variant="outline" class="w-36 text-white border-white">Visit Now</Button>
           </div>
           <div class="flex justify-end items-center">
             <div class="relative">
@@ -44,7 +44,10 @@
     <div class="p-6">
       <div class="flex justify-between items-center mb-4">
         <h2 class="text-lg font-medium">Trending Now</h2>
-        <a-button type="text" class="text-sm">查看更多 <icon-right /></a-button>
+        <Button variant="ghost" size="sm" class="text-sm">
+          查看更多
+          <icon-right class="ml-1" />
+        </Button>
       </div>
       <div class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6">
         <div
@@ -58,9 +61,11 @@
           <div class="p-3">
             <h3 class="text-sm font-medium mb-1">{{ item.title }}</h3>
             <div class="flex items-center text-xs text-gray-500">
-              <a-avatar :size="20" :style="{ backgroundColor: item.avatarColor || '#165DFF' }">
-                {{ item.avatarText }}
-              </a-avatar>
+              <Avatar
+                :size="20"
+                :fallback="item.avatarText"
+                :style="{ backgroundColor: item.avatarColor || '#165DFF' }"
+              />
               <span class="ml-2">{{ item.author }}</span>
             </div>
           </div>
@@ -72,6 +77,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { Button } from '@/components/ui/button';
+import { Avatar } from '@/components/ui/avatar';
 
 // 趋势项目数据
 const trendingItems = ref([

@@ -10,6 +10,8 @@ export default withNuxt([
       'vue/no-multiple-template-root': 'off',
       'vue/html-self-closing': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
+      'vue/require-default-prop': 'off',
+      'vue/attribute-hyphenation': 'off',
     },
   },
   {

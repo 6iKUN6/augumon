@@ -1,21 +1,17 @@
 <template>
-  <a-layout-sider
-    :width="Number(width)"
-    :collapsed="collapsed"
-    :collapsible="collapsible"
-    breakpoint="md"
-    class="bg-white border-r border-[var(--color-border)] flex flex-col h-[calc(100vh-60px)]"
-    :class="{
-      'border-r border-[var(--color-border)]': position === 'left',
-      'border-l border-[var(--color-border)]': position === 'right',
-    }"
-    :style="{ order: position === 'right' ? 3 : 0 }"
-    @collapse="$emit('update:collapsed', $event)"
+  <aside
+    class="flex flex-col h-[calc(100vh-60px)] bg-background"
+    :class="[
+      {
+        'w-[220px]': !collapsed,
+        'w-[80px]': collapsed,
+        'border-r': position === 'left',
+        'border-l order-3': position === 'right',
+      },
+    ]"
   >
-    <div class="flex items-center justify-center p-4 border-b border-[var(--color-border)]">
-      <a-avatar :size="64" class="bg-gray-200">
-        <span class="text-gray-400">登录</span>
-      </a-avatar>
+    <div class="flex items-center justify-center p-4 border-b">
+      <Avatar :size="64" :fallback="'登'" class="bg-muted" />
     </div>
 
     <div class="flex-1 overflow-y-auto p-2">
@@ -25,10 +21,10 @@
           <div
             v-for="(item, index) in menuItems"
             :key="index"
-            class="flex items-center p-3 rounded-md cursor-pointer relative hover:bg-[var(--color-fill-2)] mb-2"
+            class="flex items-center p-3 rounded-md cursor-pointer relative mb-2 transition-colors"
             :class="{
-              'bg-[var(--color-primary-light-1)] text-[var(--color-primary)]':
-                activeIndex === index,
+              'bg-primary/10 text-primary': activeIndex === index,
+              'hover:bg-muted': activeIndex !== index,
             }"
             @click="$emit('select-item', index)"
           >
@@ -41,27 +37,33 @@
             </div>
 
             <div v-if="item.badge" class="ml-auto">
-              <a-tag :color="item.badgeColor || 'arcoblue'" size="small">{{ item.badge }}</a-tag>
+              <Badge :variant="getBadgeVariant(item.badgeColor)">
+                {{ item.badge }}
+              </Badge>
             </div>
           </div>
         </div>
       </slot>
     </div>
 
-    <div v-if="$slots.footer" class="p-4 border-t border-[var(--color-border)]">
+    <div v-if="$slots.footer" class="p-4 border-t">
       <slot name="footer"></slot>
     </div>
 
-    <div v-else class="p-4 border-t border-[var(--color-border)]">
-      <a-button block type="outline" size="small">
-        <template #icon><icon-poweroff /></template>
+    <div v-else class="p-4 border-t">
+      <Button variant="outline" size="sm" class="w-full">
+        <icon-poweroff class="mr-2 h-4 w-4" />
         前往官网
-      </a-button>
+      </Button>
     </div>
-  </a-layout-sider>
+  </aside>
 </template>
 
 <script setup lang="ts">
+import { Button } from '@/components/ui/button';
+import { Avatar } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
+
 // 定义菜单项类型
 interface MenuItem {
   title: string;
@@ -73,6 +75,19 @@ interface MenuItem {
   badgeColor?: string;
   [key: string]: unknown;
 }
+
+const getBadgeVariant = (color?: string) => {
+  switch (color) {
+    case 'arcoblue':
+      return 'default';
+    case 'red':
+      return 'destructive';
+    case 'gray':
+      return 'secondary';
+    default:
+      return 'default';
+  }
+};
 
 const props = defineProps({
   title: {
@@ -91,35 +106,14 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  collapsible: {
-    type: Boolean,
-    default: true,
-  },
-  width: {
-    type: [Number, String],
-    default: 220,
-  },
   position: {
     type: String,
     default: 'left',
     validator: (value: string) => ['left', 'right'].includes(value),
   },
-  showAddButton: {
-    type: Boolean,
-    default: true,
-  },
-  showDeleteButton: {
-    type: Boolean,
-    default: true,
-  },
-  showDefaultFooter: {
-    type: Boolean,
-    default: false,
-  },
 });
 
-// 只保留实际使用的props变量
-const { menuItems, activeIndex, collapsed, collapsible, width, position } = props;
+const { menuItems, activeIndex, collapsed, position } = props;
 
 defineEmits(['update:collapsed', 'select-item', 'add-item', 'delete-item']);
 </script>

@@ -1,22 +1,20 @@
 <template>
-  <div class="min-h-screen bg-bg-1">
-    <a-layout class="h-full">
+  <div class="min-h-screen bg-background">
+    <div class="flex flex-col h-full">
       <LayoutHeader />
-      <a-layout>
+      <div class="flex flex-1">
         <LayoutSider
           v-model:collapsed="siderCollapsed"
           title="登录"
           :menu-items="siderMenuItems"
           :active-index="activeSiderIndex"
-          :show-add-button="false"
-          :show-delete-button="false"
           @select-item="handleSiderSelect"
         />
-        <a-layout-content class="p-0 bg-bg-1 min-h-[calc(100vh-60px)]">
+        <main class="flex-1 p-0 min-h-[calc(100vh-60px)]">
           <slot />
-        </a-layout-content>
-      </a-layout>
-    </a-layout>
+        </main>
+      </div>
+    </div>
   </div>
 </template>
 
