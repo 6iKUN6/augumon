@@ -1,23 +1,20 @@
 <template>
-  <div class="min-h-screen bg-bg-1">
-    <a-layout class="h-full">
-      <LayoutHeader @toggle-sidebar="toggleSidebar" />
-      <a-layout>
+  <div class="min-h-screen bg-background">
+    <div class="flex flex-col h-full">
+      <LayoutHeader />
+      <div class="flex flex-1">
         <LayoutSider
-          v-if="showSidebar"
           v-model:collapsed="siderCollapsed"
-          title="功能菜单"
+          title="登录"
           :menu-items="siderMenuItems"
           :active-index="activeSiderIndex"
-          :show-add-button="false"
-          :show-delete-button="false"
           @select-item="handleSiderSelect"
         />
-        <a-layout-content class="p-0 bg-bg-1 min-h-[calc(100vh-60px)]">
+        <main class="flex-1 p-0 min-h-[calc(100vh-60px)]">
           <slot />
-        </a-layout-content>
-      </a-layout>
-    </a-layout>
+        </main>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -26,45 +23,40 @@ import { ref } from 'vue';
 import LayoutHeader from './header.vue';
 import LayoutSider from './sider.vue';
 
-const showSidebar = ref(false);
 const siderCollapsed = ref(false);
 const activeSiderIndex = ref(0);
 
 // 侧边栏菜单项
 const siderMenuItems = ref([
   {
-    title: '首页',
+    title: '主页',
     icon: 'icon-home',
   },
   {
-    title: '设计区域',
+    title: '我的空间',
     icon: 'icon-edit',
   },
   {
-    title: '我的设计',
+    title: 'DesignFind',
+    icon: 'icon-search',
+  },
+  {
+    title: 'Support Center',
+    icon: 'icon-question-circle',
+  },
+  {
+    title: '材料参数库',
     icon: 'icon-file',
-  },
-  {
-    title: '素材库',
-    icon: 'icon-image',
-  },
-  {
-    title: 'AI助手',
-    icon: 'icon-robot',
-  },
-  {
-    title: '设置',
-    icon: 'icon-settings',
   },
 ]);
 
-const toggleSidebar = () => {
-  showSidebar.value = !showSidebar.value;
-};
-
 const handleSiderSelect = (index: number) => {
   activeSiderIndex.value = index;
-  // 这里可以添加路由跳转逻辑
+  // 路由跳转逻辑
+  const routes = ['/home', '/my-space', '/design-find', '/support', '/materials'];
+  if (routes[index]) {
+    navigateTo(routes[index]);
+  }
 };
 </script>
 

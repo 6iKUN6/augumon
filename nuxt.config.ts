@@ -8,91 +8,51 @@ export default defineNuxtConfig({
   vite: {
     plugins: [],
   },
-  unocss: {
-    nuxtLayers: true, //可以启用 nuxtLayers 选项，这样 Nuxt 会自动合并每个 Nuxt 层中的 uno.config 文件
-  },
   css: ['@arco-design/web-vue/dist/arco.css'],
-  // fonts: {
-  //   families: [
-  //     {
-  //       name: "Roboto",
-  //       provider: "google",
-  //       weights: [400, 500, 700],
-  //     },
-  //     {
-  //       name: "Open Sans",
-  //       provider: "google",
-  //       weights: [400, 600, 700],
-  //     },
-  //   ],
-  //   preconnect: ["https://fonts.loli.net"],
-  //   display: "swap",
-  //   baseURL: "https://fonts.loli.net",
-  //   providers: {
-  //     google: {
-  //       manifestURL: "https://fonts.loli.net/manifest.json",
-  //       iconsURL: "https://fonts.loli.net/icons/icons.json",
-  //     },
-  //   },
-  // },
-  ui: {
-    fonts: false,
-  },
   imports: {
     dirs: ['stores'],
   },
   modules: [
-    '@nuxt/content',
     '@nuxt/eslint',
-    '@nuxt/icon',
-    '@nuxt/image',
-    '@nuxt/scripts',
     '@nuxt/test-utils',
-    // "@nuxt/fonts",
-    '@nuxt/ui',
-    '@unocss/nuxt',
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt',
+    '@nuxtjs/tailwindcss',
+    'shadcn-nuxt',
   ],
+  tailwindcss: {
+    configPath: './tailwind.config.js',
+    cssPath: './src/assets/css/globals.css',
+    exposeConfig: true,
+    viewer: false,
+  },
   eslint: {
     config: {
       // ESM 项目可能需要显式声明
-      useEslintrc: true,
+      // useEslintrc: true,
     },
   },
   routeRules: {
     '/': { redirect: '/home' },
   },
-  content: {
-    // 基本配置
-    documentDriven: true,
-    navigation: {
-      fields: ['title', 'description', '_path'],
+  shadcn: {
+    prefix: '',
+    componentDir: 'src/components/ui',
+  },
+  // 解决中间件冲突的配置
+  experimental: {
+    payloadExtraction: false,
+  },
+  nitro: {
+    experimental: {
+      wasm: true,
     },
-    // 内容目录，默认是 'content'
-    sources: {
-      content: {
-        driver: 'fs',
-        base: './content',
+    // 明确处理路由规则
+    routeRules: {
+      '/': {
+        headers: { 'cache-control': 'max-age=31536000' },
+        redirect: '/home',
       },
-      // 可以添加更多内容源
-    },
-    // Markdown 解析配置
-    markdown: {
-      toc: {
-        depth: 3,
-        searchDepth: 3,
-      },
-      rehypePlugins: [
-        // 可添加 rehype 插件
-      ],
-      remarkPlugins: [
-        // 可添加 remark 插件
-      ],
-    },
-    // 高亮配置
-    highlight: {
-      theme: 'github-dark',
     },
   },
 });

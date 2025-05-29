@@ -1,7 +1,11 @@
 ## 基于 nuxt+go 的 ai 设计器
 
 技术选型
-前端：nuxt+unocss+leaferjs(canvas)+arco(组件库)
+前端：nuxt+unocss+leaferjs(canvas)+shadcn(https://www.shadcn-vue.com/)
+
+<!-- +arco(组件库) -->
+
+https://www.leaferjs.com/ui/guide/
 后端：gin+gorm(nunu 模板)
 
 目标：
@@ -14,3 +18,5 @@
 2.传统的文生图
 
 3.一个 ai 助手，提供设计建议
+
+4.同一个项目，协同编辑
