@@ -1,5 +1,5 @@
 <template>
-  <header class="flex items-center justify-between px-5 h-[60px] bg-background border-b">
+  <div class="flex items-center justify-between px-5 h-[60px] bg-background border-b">
     <div class="flex items-center">
       <h1 class="text-xl font-bold">
         <span class="text-[#00B42A]">Y</span><span class="text-foreground">RC6</span>
@@ -52,7 +52,7 @@
         <Button @click="openRegisterModal">注册</Button>
       </template>
     </div>
-  </header>
+  </div>
   <AuthManager />
 </template>
 
