@@ -43,6 +43,7 @@
     "@commitlint/config-conventional": "^19.8.1",
     "@nuxt/eslint": "^1.4.0",
     "@nuxt/test-utils": "^3.19.0",
+    "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/tailwindcss": "^6.0.0",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.16",

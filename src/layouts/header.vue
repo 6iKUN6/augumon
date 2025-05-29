@@ -2,7 +2,7 @@
   <header class="flex items-center justify-between px-5 h-[60px] bg-background border-b">
     <div class="flex items-center">
       <h1 class="text-xl font-bold">
-        <span class="text-[#00B42A]">X</span><span class="text-foreground">TOOL</span>
+        <span class="text-[#00B42A]">Y</span><span class="text-foreground">RC6</span>
       </h1>
     </div>
 
@@ -26,6 +26,9 @@
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
+
+      <!-- 主题切换按钮 -->
+      <ThemeToggle />
 
       <template v-if="authStore.isLoggedIn">
         <DropdownMenu>
@@ -64,6 +67,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
+import ThemeToggle from '@/components/ThemeToggle.vue';
 
 const authStore = useAuthStore();
 const modalStore = useModalStore();

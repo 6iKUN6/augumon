@@ -62,7 +62,7 @@
             <h3 class="text-sm font-medium mb-1">{{ item.title }}</h3>
             <div class="flex items-center text-xs text-gray-500">
               <Avatar
-                :size="20"
+                size="sm"
                 :fallback="item.avatarText"
                 :style="{ backgroundColor: item.avatarColor || '#165DFF' }"
               />

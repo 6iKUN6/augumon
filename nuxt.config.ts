@@ -39,4 +39,20 @@ export default defineNuxtConfig({
     prefix: '',
     componentDir: 'src/components/ui',
   },
+  // 解决中间件冲突的配置
+  experimental: {
+    payloadExtraction: false,
+  },
+  nitro: {
+    experimental: {
+      wasm: true,
+    },
+    // 明确处理路由规则
+    routeRules: {
+      '/': {
+        headers: { 'cache-control': 'max-age=31536000' },
+        redirect: '/home',
+      },
+    },
+  },
 });
