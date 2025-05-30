@@ -1,7 +1,7 @@
 ## 基于 nuxt+go 的 ai 设计器
 
 技术选型
-前端：nuxt+unocss+leaferjs(canvas)+shadcn(https://www.shadcn-vue.com/)
+前端：nuxt+tailwindcss+leaferjs(canvas)+shadcn-vue(https://www.shadcn-vue.com/)
 
 <!-- +arco(组件库) -->
 
