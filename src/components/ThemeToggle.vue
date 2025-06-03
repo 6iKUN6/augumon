@@ -9,7 +9,7 @@
       @click="handleToggle"
     >
       <Transition name="icon-rotate" mode="out-in">
-        <Sun v-if="themeStore.isDark" key="sun" class="h-4 w-4" />
+        <Sun v-if="!themeStore.isDark" key="sun" class="h-4 w-4" />
         <Moon v-else key="moon" class="h-4 w-4" />
       </Transition>
     </Button>

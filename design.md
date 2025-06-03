@@ -19,4 +19,4 @@ https://www.leaferjs.com/ui/guide/
 
 3.一个 ai 助手，提供设计建议
 
-4.同一个项目，协同编辑
+4.同一个项目,协同编辑。yjs,ywebsocket,crtd.
