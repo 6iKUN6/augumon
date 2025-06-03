@@ -10,6 +10,7 @@
             <Button
               variant="outline"
               class="w-36 border-white text-white hover:bg-white hover:text-gray-900 transition-all duration-300"
+              @click="toDesignEditor"
               >立即体验</Button
             >
           </div>
@@ -188,6 +189,10 @@ const trendingItems = ref([
     avatarColor: '#00B42A',
   },
 ]);
+
+const toDesignEditor = () => {
+  navigateTo('/design-editor');
+};
 </script>
 
 <style scoped>
