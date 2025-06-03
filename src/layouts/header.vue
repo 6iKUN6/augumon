@@ -1,6 +1,8 @@
 <template>
-  <div class="flex items-center justify-between px-5 h-[60px] bg-background border-b">
-    <div class="flex items-center">
+  <div class="flex items-center justify-between px-5 h-[60px] bg-background border-b w-full">
+    <div class="flex items-center space-x-3">
+      <!-- 侧边栏控制按钮 -->
+      <SidebarTrigger />
       <h1 class="text-xl font-bold">
         <span class="text-[#00B42A]">Y</span><span class="text-foreground">RC6</span>
       </h1>
@@ -9,13 +11,13 @@
     <div class="flex items-center space-x-4">
       <div class="flex items-center space-x-2">
         <Button variant="outline" size="sm">
-          <icon-folder-add class="mr-2 h-4 w-4" />
+          <FolderOpen class="mr-2 h-4 w-4" />
           打开本地项目
         </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button size="sm">
-              <icon-plus class="mr-2 h-4 w-4" />
+              <Plus class="mr-2 h-4 w-4" />
               创建新项目
             </Button>
           </DropdownMenuTrigger>
@@ -68,6 +70,8 @@ import {
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
 import ThemeToggle from '@/components/ThemeToggle.vue';
+import { SidebarTrigger } from '@/components/ui/sidebar';
+import { Plus, FolderOpen } from 'lucide-vue-next';
 
 const authStore = useAuthStore();
 const modalStore = useModalStore();

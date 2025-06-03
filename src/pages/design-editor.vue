@@ -11,63 +11,64 @@
       @update:collapsed="toolbarCollapsed = $event"
     >
       <template #footer>
-        <div class="flex-between">
-          <a-button type="primary" class="flex-1">
-            <template #icon><icon-save /></template>
+        <div class="flex gap-2">
+          <Button class="flex-1">
+            <Save class="w-4 h-4 mr-2" />
             保存
-          </a-button>
-          <a-button class="ml-2">
-            <template #icon><icon-eye /></template>
+          </Button>
+          <Button variant="outline">
+            <Eye class="w-4 h-4 mr-2" />
             预览
-          </a-button>
+          </Button>
         </div>
       </template>
     </LayoutSider>
 
     <!-- 主编辑区域 -->
-    <div class="flex-1 flex flex-col bg-bg-1 relative">
+    <div class="flex-1 flex flex-col bg-muted/30 relative">
       <!-- 顶部操作区 -->
-      <div class="h-50px flex-between border-b border-[var(--color-border)] p-16px">
-        <div class="flex items-center">
-          <a-button-group>
-            <a-button>
-              <template #icon><icon-undo /></template>
-            </a-button>
-            <a-button>
-              <template #icon><icon-redo /></template>
-            </a-button>
-          </a-button-group>
-          <a-divider direction="vertical" />
-          <a-button-group class="ml-4">
-            <a-button>
-              <template #icon><icon-zoom-in /></template>
-            </a-button>
-            <a-button>
-              <template #icon><icon-zoom-out /></template>
-            </a-button>
-          </a-button-group>
+      <div class="h-12 flex items-center justify-between border-b px-4">
+        <div class="flex items-center gap-4">
+          <div class="flex gap-1">
+            <Button variant="outline" size="sm">
+              <Undo class="w-4 h-4" />
+            </Button>
+            <Button variant="outline" size="sm">
+              <Redo class="w-4 h-4" />
+            </Button>
+          </div>
+          <Separator orientation="vertical" className="h-6" />
+          <div class="flex gap-1">
+            <Button variant="outline" size="sm">
+              <ZoomIn class="w-4 h-4" />
+            </Button>
+            <Button variant="outline" size="sm">
+              <ZoomOut class="w-4 h-4" />
+            </Button>
+          </div>
         </div>
 
-        <div>
-          <a-button-group>
-            <a-button type="primary">
-              <template #icon><icon-robot /></template>
-              AI优化
-            </a-button>
-            <a-button type="primary">
-              <template #icon><icon-export /></template>
-              导出
-            </a-button>
-          </a-button-group>
+        <div class="flex gap-2">
+          <Button>
+            <Bot class="w-4 h-4 mr-2" />
+            AI优化
+          </Button>
+          <Button>
+            <Download class="w-4 h-4 mr-2" />
+            导出
+          </Button>
         </div>
       </div>
 
       <!-- 设计画布区域 -->
-      <div class="flex-1 overflow-auto p-16px flex-center bg-[#f2f3f5]">
-        <div class="card-base w-800px h-600px" style="resize: both; overflow: auto">
+      <div class="flex-1 overflow-auto p-4 flex items-center justify-center bg-muted/50">
+        <div
+          class="bg-white rounded-lg shadow-lg w-[800px] h-[600px] border"
+          style="resize: both; overflow: auto"
+        >
           <!-- 画布内容 -->
-          <div class="w-full h-full flex-center">
-            <span class="text-text-3 text-xl">画布区域</span>
+          <div class="w-full h-full flex items-center justify-center">
+            <span class="text-muted-foreground text-xl">画布区域</span>
           </div>
         </div>
       </div>
@@ -82,75 +83,87 @@
       @update:collapsed="propsPanelCollapsed = $event"
     >
       <template #menu>
-        <a-tabs type="card-gutter">
-          <a-tab-pane key="style" title="样式">
-            <div class="p-16px">
-              <a-form :model="styleForm" layout="vertical">
-                <a-form-item field="width" label="宽度">
-                  <a-input-number v-model="styleForm.width" mode="button" min="0" />
-                </a-form-item>
-                <a-form-item field="height" label="高度">
-                  <a-input-number v-model="styleForm.height" mode="button" min="0" />
-                </a-form-item>
-                <a-form-item field="background" label="背景颜色">
-                  <a-color-picker v-model="styleForm.background" />
-                </a-form-item>
-                <a-form-item field="border" label="边框">
-                  <a-input v-model="styleForm.border" placeholder="1px solid #000" />
-                </a-form-item>
-                <a-form-item field="borderRadius" label="圆角">
-                  <a-input-number v-model="styleForm.borderRadius" mode="button" min="0" />
-                </a-form-item>
-              </a-form>
+        <Tabs default-value="style" class="w-full">
+          <TabsList class="grid w-full grid-cols-3">
+            <TabsTrigger value="style">样式</TabsTrigger>
+            <TabsTrigger value="text">文本</TabsTrigger>
+            <TabsTrigger value="arrange">排列</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="style" class="p-4 space-y-4">
+            <div class="space-y-2">
+              <label class="text-sm font-medium">宽度</label>
+              <Input v-model="styleForm.width" type="number" :min="0" />
             </div>
-          </a-tab-pane>
-          <a-tab-pane key="text" title="文本">
-            <div class="p-16px">
-              <a-form :model="textForm" layout="vertical">
-                <a-form-item field="content" label="内容">
-                  <a-textarea v-model="textForm.content" placeholder="请输入文本内容" />
-                </a-form-item>
-                <a-form-item field="fontSize" label="字体大小">
-                  <a-input-number v-model="textForm.fontSize" mode="button" min="12" max="72" />
-                </a-form-item>
-                <a-form-item field="fontWeight" label="字体粗细">
-                  <a-select v-model="textForm.fontWeight">
-                    <a-option value="normal">正常</a-option>
-                    <a-option value="bold">粗体</a-option>
-                    <a-option value="lighter">细体</a-option>
-                  </a-select>
-                </a-form-item>
-                <a-form-item field="fontColor" label="字体颜色">
-                  <a-color-picker v-model="textForm.fontColor" />
-                </a-form-item>
-              </a-form>
+            <div class="space-y-2">
+              <label class="text-sm font-medium">高度</label>
+              <Input v-model="styleForm.height" type="number" :min="0" />
             </div>
-          </a-tab-pane>
-          <a-tab-pane key="arrange" title="排列">
-            <div class="p-16px">
-              <a-space direction="vertical" size="large" fill>
-                <a-button-group>
-                  <a-button>上移一层</a-button>
-                  <a-button>下移一层</a-button>
-                </a-button-group>
-                <a-button-group>
-                  <a-button>置于顶层</a-button>
-                  <a-button>置于底层</a-button>
-                </a-button-group>
-                <a-button-group>
-                  <a-button>左对齐</a-button>
-                  <a-button>居中对齐</a-button>
-                  <a-button>右对齐</a-button>
-                </a-button-group>
-                <a-button-group>
-                  <a-button>顶部对齐</a-button>
-                  <a-button>垂直居中</a-button>
-                  <a-button>底部对齐</a-button>
-                </a-button-group>
-              </a-space>
+            <div class="space-y-2">
+              <label class="text-sm font-medium">背景颜色</label>
+              <Input v-model="styleForm.background" type="color" />
             </div>
-          </a-tab-pane>
-        </a-tabs>
+            <div class="space-y-2">
+              <label class="text-sm font-medium">边框</label>
+              <Input v-model="styleForm.border" placeholder="1px solid #000" />
+            </div>
+            <div class="space-y-2">
+              <label class="text-sm font-medium">圆角</label>
+              <Input v-model="styleForm.borderRadius" type="number" :min="0" />
+            </div>
+          </TabsContent>
+
+          <TabsContent value="text" class="p-4 space-y-4">
+            <div class="space-y-2">
+              <label class="text-sm font-medium">内容</label>
+              <Textarea v-model="textForm.content" placeholder="请输入文本内容" />
+            </div>
+            <div class="space-y-2">
+              <label class="text-sm font-medium">字体大小</label>
+              <Input v-model="textForm.fontSize" type="number" :min="12" :max="72" />
+            </div>
+            <div class="space-y-2">
+              <label class="text-sm font-medium">字体粗细</label>
+              <Select v-model="textForm.fontWeight">
+                <SelectTrigger>
+                  <SelectValue placeholder="选择字体粗细" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="normal">正常</SelectItem>
+                  <SelectItem value="bold">粗体</SelectItem>
+                  <SelectItem value="lighter">细体</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div class="space-y-2">
+              <label class="text-sm font-medium">字体颜色</label>
+              <Input v-model="textForm.fontColor" type="color" />
+            </div>
+          </TabsContent>
+
+          <TabsContent value="arrange" class="p-4 space-y-4">
+            <div class="space-y-3">
+              <div class="flex gap-2">
+                <Button variant="outline" size="sm" class="flex-1">上移一层</Button>
+                <Button variant="outline" size="sm" class="flex-1">下移一层</Button>
+              </div>
+              <div class="flex gap-2">
+                <Button variant="outline" size="sm" class="flex-1">置于顶层</Button>
+                <Button variant="outline" size="sm" class="flex-1">置于底层</Button>
+              </div>
+              <div class="flex gap-2">
+                <Button variant="outline" size="sm" class="flex-1">左对齐</Button>
+                <Button variant="outline" size="sm" class="flex-1">居中</Button>
+                <Button variant="outline" size="sm" class="flex-1">右对齐</Button>
+              </div>
+              <div class="flex gap-2">
+                <Button variant="outline" size="sm" class="flex-1">顶部对齐</Button>
+                <Button variant="outline" size="sm" class="flex-1">垂直居中</Button>
+                <Button variant="outline" size="sm" class="flex-1">底部对齐</Button>
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
       </template>
     </LayoutSider>
   </div>
@@ -158,18 +171,45 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import {
+  Save,
+  Eye,
+  Undo,
+  Redo,
+  ZoomIn,
+  ZoomOut,
+  Bot,
+  Download,
+  MousePointer,
+  Type,
+  Shapes,
+  Image,
+  Copy,
+} from 'lucide-vue-next';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Separator } from '@/components/ui/separator';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import LayoutSider from '../layouts/sider.vue';
 
 // 工具栏状态
 const toolbarCollapsed = ref(false);
 const activeToolIndex = ref(0);
 const toolItems = ref([
-  { title: '选择工具', icon: 'icon-select-all' },
-  { title: '文本工具', icon: 'icon-font-colors' },
-  { title: '形状工具', icon: 'icon-bg-colors' },
-  { title: '图片工具', icon: 'icon-image' },
-  { title: '设计模板', icon: 'icon-copy' },
-  { title: '智能生成', icon: 'icon-robot' },
+  { title: '选择工具', icon: MousePointer },
+  { title: '文本工具', icon: Type },
+  { title: '形状工具', icon: Shapes },
+  { title: '图片工具', icon: Image },
+  { title: '设计模板', icon: Copy },
+  { title: '智能生成', icon: Bot },
 ]);
 
 // 右侧属性面板状态

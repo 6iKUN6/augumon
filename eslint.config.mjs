@@ -24,7 +24,7 @@ export default withNuxt([
       prettier: prettierPlugin,
     },
     rules: {
-      // 'prettier/prettier': 'error',
+      'prettier/prettier': 'error',
     },
   },
 ]);

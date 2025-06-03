@@ -7,7 +7,7 @@
           <div class="relative">
             <div class="w-28 h-28 bg-white rounded-full flex items-center justify-center">
               <div class="text-4xl text-gray-800">
-                <icon-check-circle />
+                <CheckCircle />
               </div>
             </div>
             <div class="absolute w-full h-full top-0 left-0 flex items-center justify-center">
@@ -31,7 +31,7 @@
           <div class="relative">
             <div class="w-28 h-28 bg-white rounded-full flex items-center justify-center">
               <div class="text-4xl text-green-500">
-                <icon-lightning />
+                <Zap />
               </div>
             </div>
             <div class="absolute w-full h-full top-0 left-0 flex items-center justify-center">
@@ -53,7 +53,7 @@
           <div class="relative">
             <div class="w-28 h-28 bg-white rounded-full flex items-center justify-center">
               <div class="text-4xl text-gray-800">
-                <icon-file />
+                <File />
               </div>
             </div>
             <div class="absolute w-full h-full top-0 left-0 flex items-center justify-center">
@@ -72,12 +72,14 @@
 
     <!-- 立即学习按钮 -->
     <div class="flex justify-center mt-8">
-      <a-button type="primary" size="large">立即学习</a-button>
+      <Button size="lg">立即学习</Button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { CheckCircle, Zap, File } from 'lucide-vue-next';
+import { Button } from '@/components/ui/button';
 // 这里可以添加页面逻辑
 </script>
 

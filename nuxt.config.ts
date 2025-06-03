@@ -8,7 +8,8 @@ export default defineNuxtConfig({
   vite: {
     plugins: [],
   },
-  css: ['@arco-design/web-vue/dist/arco.css'],
+  // css: ['@arco-design/web-vue/dist/arco.css'],
+  css: [],
   imports: {
     dirs: ['stores'],
   },

@@ -1,81 +1,95 @@
 <template>
-  <div class="flex h-[calc(100vh-60px)] bg-[var(--color-bg-1)]">
-    <div class="w-280px bg-[var(--color-bg-2)] border-r border-[var(--color-border)] flex flex-col">
-      <div class="flex-between p-16px border-b border-[var(--color-border)]">
-        <h2 class="m-0 text-lg">AI助手</h2>
-        <a-button type="outline" shape="circle">
-          <template #icon><icon-plus /></template>
-        </a-button>
+  <div class="flex h-[calc(100vh-60px)] bg-background">
+    <div class="w-80 bg-muted/30 border-r flex flex-col">
+      <div class="flex items-center justify-between p-4 border-b">
+        <h2 class="text-lg font-semibold">AI助手</h2>
+        <Button variant="outline" size="sm">
+          <Plus class="w-4 h-4" />
+        </Button>
       </div>
-      <div class="flex-1 overflow-y-auto p-8px">
+      <div class="flex-1 overflow-y-auto p-2">
         <div
           v-for="(chat, index) in chatHistory"
           :key="index"
-          class="flex items-center p-12px rounded-4px cursor-pointer relative hover:bg-[var(--color-fill-2)]"
+          class="flex items-center p-3 rounded-md cursor-pointer relative hover:bg-muted/50 transition-colors"
           :class="{
-            'bg-[var(--color-primary-light-1)]': currentChat === index,
+            'bg-muted': currentChat === index,
           }"
           @click="selectChat(index)"
         >
-          <a-avatar :style="{ backgroundColor: getRandomColor(index) }">
-            {{ chat.title.charAt(0) }}
-          </a-avatar>
-          <div class="ml-12px flex-1 overflow-hidden">
-            <div class="font-500 whitespace-nowrap overflow-hidden text-ellipsis">
+          <Avatar class="w-8 h-8">
+            <AvatarFallback :style="{ backgroundColor: getRandomColor(index) }" class="text-white">
+              {{ chat.title.charAt(0) }}
+            </AvatarFallback>
+          </Avatar>
+          <div class="ml-3 flex-1 overflow-hidden">
+            <div class="font-medium text-sm whitespace-nowrap overflow-hidden text-ellipsis">
               {{ chat.title }}
             </div>
-            <div class="text-xs text-[var(--color-text-3)] mt-4px">
+            <div class="text-xs text-muted-foreground mt-1">
               {{ chat.time }}
             </div>
           </div>
-          <a-button
-            type="text"
-            shape="circle"
-            class="opacity-0 transition-opacity duration-200 hover:opacity-100"
+          <Button
+            variant="ghost"
+            size="sm"
+            class="opacity-0 group-hover:opacity-100 transition-opacity w-8 h-8 p-0"
           >
-            <template #icon><icon-delete /></template>
-          </a-button>
+            <Trash2 class="w-4 h-4" />
+          </Button>
         </div>
       </div>
     </div>
 
-    <div class="flex-1 flex flex-col bg-[var(--color-bg-1)]">
-      <div class="flex-between p-16px border-b border-[var(--color-border)]">
-        <h2 class="m-0 text-lg">{{ currentChatTitle }}</h2>
+    <div class="flex-1 flex flex-col bg-background">
+      <div class="flex items-center justify-between p-4 border-b">
+        <h2 class="text-lg font-semibold">{{ currentChatTitle }}</h2>
         <div>
-          <a-button type="primary">
-            <template #icon><icon-download /></template>
+          <Button>
+            <Download class="w-4 h-4 mr-2" />
             导出对话
-          </a-button>
+          </Button>
         </div>
       </div>
 
-      <div ref="chatContainer" class="flex-1 p-16px overflow-y-auto">
-        <div
-          v-if="currentMessages.length === 0"
-          class="text-center p-40px-20px max-w-600px mx-auto"
-        >
-          <div class="text-48px text-[var(--color-primary)] mb-16px">
-            <icon-robot />
+      <div ref="chatContainer" class="flex-1 p-4 overflow-y-auto">
+        <div v-if="currentMessages.length === 0" class="text-center p-8 max-w-2xl mx-auto">
+          <div class="text-5xl text-primary mb-4 flex justify-center">
+            <Bot />
           </div>
-          <h2>AI设计助手</h2>
-          <p>我可以帮您生成设计创意、改进设计、推荐颜色搭配和布局方案。</p>
-          <div class="flex flex-wrap gap-12px justify-center mt-24px">
-            <a-button
+          <h2 class="text-2xl font-bold mb-2">AI设计助手</h2>
+          <p class="text-muted-foreground mb-6">
+            我可以帮您生成设计创意、改进设计、推荐颜色搭配和布局方案。
+          </p>
+          <div class="flex flex-wrap gap-3 justify-center">
+            <Button
+              variant="outline"
               class="max-w-full"
               @click="insertSuggestion('帮我生成一个简约风格的海报设计')"
             >
               帮我生成一个简约风格的海报设计
-            </a-button>
-            <a-button class="max-w-full" @click="insertSuggestion('如何改进我的配色方案？')">
+            </Button>
+            <Button
+              variant="outline"
+              class="max-w-full"
+              @click="insertSuggestion('如何改进我的配色方案？')"
+            >
               如何改进我的配色方案？
-            </a-button>
-            <a-button class="max-w-full" @click="insertSuggestion('推荐几款适合科技公司的字体')">
+            </Button>
+            <Button
+              variant="outline"
+              class="max-w-full"
+              @click="insertSuggestion('推荐几款适合科技公司的字体')"
+            >
               推荐几款适合科技公司的字体
-            </a-button>
-            <a-button class="max-w-full" @click="insertSuggestion('给我的设计提供一些创意建议')">
+            </Button>
+            <Button
+              variant="outline"
+              class="max-w-full"
+              @click="insertSuggestion('给我的设计提供一些创意建议')"
+            >
               给我的设计提供一些创意建议
-            </a-button>
+            </Button>
           </div>
         </div>
 
@@ -83,32 +97,35 @@
           <div
             v-for="(message, index) in currentMessages"
             :key="index"
-            class="flex mb-16px max-w-80%"
+            class="flex mb-4 max-w-[80%]"
             :class="{
               'ml-auto flex-row-reverse': message.isUser,
             }"
           >
-            <a-avatar
-              :style="
-                message.isUser ? { backgroundColor: '#165DFF' } : { backgroundColor: '#00B42A' }
-              "
-            >
-              {{ message.isUser ? 'U' : 'A' }}
-            </a-avatar>
-            <div class="mx-12px overflow-hidden">
+            <Avatar class="w-8 h-8">
+              <AvatarFallback
+                :style="
+                  message.isUser ? { backgroundColor: '#3b82f6' } : { backgroundColor: '#10b981' }
+                "
+                class="text-white"
+              >
+                {{ message.isUser ? 'U' : 'A' }}
+              </AvatarFallback>
+            </Avatar>
+            <div class="mx-3 overflow-hidden">
               <div
-                class="p-12px-16px rounded-8px mb-4px"
+                class="p-3 rounded-lg mb-1"
                 :class="
                   message.isUser
-                    ? 'bg-[var(--color-primary-light-1)] text-[var(--color-text-1)] rounded-tr-0'
-                    : 'bg-[var(--color-fill-2)] text-[var(--color-text-1)] rounded-tl-0'
+                    ? 'bg-primary text-primary-foreground rounded-tr-none'
+                    : 'bg-muted text-muted-foreground rounded-tl-none'
                 "
               >
                 {{ message.text }}
               </div>
               <div
-                class="text-xs text-[var(--color-text-3)]"
-                :class="message.isUser ? 'text-left' : 'text-right'"
+                class="text-xs text-muted-foreground"
+                :class="message.isUser ? 'text-right' : 'text-left'"
               >
                 {{ message.time }}
               </div>
@@ -117,27 +134,28 @@
         </template>
       </div>
 
-      <div class="p-16px border-t border-[var(--color-border)]">
-        <a-input-search
-          v-model="inputMessage"
-          placeholder="输入您的问题或描述..."
-          search-button
-          @search="sendMessage"
-        >
-          <template #button-icon>
-            <icon-send />
-          </template>
-        </a-input-search>
-        <div class="flex justify-start mt-8px gap-8px">
-          <a-button type="text" shape="circle">
-            <template #icon><icon-image /></template>
-          </a-button>
-          <a-button type="text" shape="circle">
-            <template #icon><icon-attachment /></template>
-          </a-button>
-          <a-button type="text" shape="circle">
-            <template #icon><icon-voice /></template>
-          </a-button>
+      <div class="p-4 border-t">
+        <div class="flex gap-2">
+          <Input
+            v-model="inputMessage"
+            placeholder="输入您的问题或描述..."
+            class="flex-1"
+            @keyup.enter="sendMessage"
+          />
+          <Button @click="sendMessage">
+            <Send class="w-4 h-4" />
+          </Button>
+        </div>
+        <div class="flex justify-start mt-2 gap-2">
+          <Button variant="ghost" size="sm">
+            <Image class="w-4 h-4" />
+          </Button>
+          <Button variant="ghost" size="sm">
+            <Paperclip class="w-4 h-4" />
+          </Button>
+          <Button variant="ghost" size="sm">
+            <Mic class="w-4 h-4" />
+          </Button>
         </div>
       </div>
     </div>
@@ -146,6 +164,10 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
+import { Plus, Trash2, Download, Bot, Send, Image, Paperclip, Mic } from 'lucide-vue-next';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 const inputMessage = ref('');
 const currentChat = ref(0);
