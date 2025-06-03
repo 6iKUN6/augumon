@@ -1,11 +1,12 @@
 <template>
   <div class="min-h-screen bg-background w-full">
-    <SidebarProvider class="w-full">
+    <SidebarProvider v-model:open="collapsed" class="w-full">
       <div class="flex min-h-screen w-full">
         <LayoutSider
           title="登录"
           :menu-items="siderMenuItems"
           :active-index="activeSiderIndex"
+          :collapsed="collapsed"
           @select-item="handleSiderSelect"
         />
         <SidebarInset class="flex-1 w-full min-w-0">
@@ -31,7 +32,17 @@ import LayoutHeader from './header.vue';
 import LayoutSider from './sider.vue';
 
 const activeSiderIndex = ref<number>(0);
-// const collapsed = ref<boolean>(false);
+const collapsed = ref<boolean>(false);
+
+// 移除 immediate: true 来避免 SSR 错误
+if (import.meta.client) {
+  watch(
+    () => collapsed.value,
+    () => {
+      console.log('collapsed', collapsed.value);
+    }
+  );
+}
 
 // 侧边栏菜单项
 const siderMenuItems = ref([
@@ -66,34 +77,3 @@ const handleSiderSelect = (index: number) => {
   }
 };
 </script>
-
-<!-- <style>
-/* 移除 Arco Design 相关样式 */
-:deep(a) {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Sidebar CSS 变量 */
-:root {
-  --sidebar-width: 16rem;
-  --sidebar-width-icon: 3rem;
-}
-
-/* 确保全宽布局 */
-.min-h-screen {
-  width: 100%;
-}
-
-/* 确保 SidebarInset 占满剩余空间 */
-:deep([data-sidebar='inset']) {
-  flex: 1;
-  width: 100%;
-  max-width: 100%;
-}
-
-/* 优化sidebar折叠状态样式 */
-:deep([data-sidebar='sidebar']) {
-  transition: width 0.2s ease-linear;
-}
-</style> -->
