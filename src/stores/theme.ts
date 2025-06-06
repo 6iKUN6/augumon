@@ -39,8 +39,7 @@ export const useThemeStore = defineStore(
         (isDarkValue) => {
           document.documentElement.classList.toggle('dark', isDarkValue);
           console.log('主题已切换到:', isDarkValue ? 'dark' : 'light');
-        },
-        { immediate: false } // 改为false，因为上面已经立即应用了
+        }
       );
 
       // 为了测试方便，在 window 上注册切换主题的方法
@@ -63,6 +62,6 @@ export const useThemeStore = defineStore(
     };
   },
   {
-    persist: true, // 使用 pinia-plugin-persistedstate 进行持久化
+    persist: true,
   }
 );

@@ -8,11 +8,13 @@ interface GroundProps extends BaseProps {
 class Ground {
   private ground: Leafer;
   constructor(props: GroundProps) {
+    const { width, height, fill, type } = props;
     this.ground = new Leafer({
-      width: props.width,
-      height: props.height,
+      width,
+      height,
       // view: props.view,
-      fill: props.fill,
+      fill,
+      type: type || 'viewport',
     });
   }
 

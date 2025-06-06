@@ -8,11 +8,13 @@ interface TreeProps extends BaseProps {
 class Tree {
   private tree: Leafer;
   constructor(props: TreeProps) {
+    const { width, height, fill, type } = props;
     this.tree = new Leafer({
-      width: props.width,
-      height: props.height,
+      width,
+      height,
       // view: props.view,
-      fill: props.fill,
+      fill,
+      type: type || 'viewport',
     });
   }
 

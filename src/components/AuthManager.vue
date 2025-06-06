@@ -29,7 +29,7 @@ const authStore = useAuthStore();
 const modalStore = useModalStore();
 
 onMounted(() => {
-  authStore.initialize();
+  // authStore.initialize();
 });
 
 // 切换至登录

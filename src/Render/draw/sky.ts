@@ -8,11 +8,13 @@ interface SkyProps extends BaseProps {
 class Sky {
   private sky: Leafer;
   constructor(props: SkyProps) {
+    const { width, height, fill, type } = props;
     this.sky = new Leafer({
-      width: props.width,
-      height: props.height,
+      width,
+      height,
       // view: props.view,
-      fill: props.fill,
+      fill,
+      type: type || 'viewport',
     });
   }
 
