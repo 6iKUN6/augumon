@@ -50,6 +50,9 @@ importers:
       leafer-ui:
         specifier: ^1.6.1
         version: 1.6.7
+      leafer-x-ruler:
+        specifier: ^2.0.0
+        version: 2.0.0(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-in/resize@1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7))(@leafer-ui/draw@1.6.7)
       lucide-vue-next:
         specifier: ^0.511.0
         version: 0.511.0(vue@3.5.16(typescript@5.8.3))
@@ -3718,6 +3721,9 @@ packages:
 
   leafer-ui@1.6.7:
     resolution: {integrity: sha512-T0NU9UeDa8WNr9fJPnZSkASIgU+MY4zH5voVwBeJKVCyRBSVsosYeChyekxBz4SyD2Qhr61CGkK4Ga+f1ji8LA==}
+
+  leafer-x-ruler@2.0.0:
+    resolution: {integrity: sha512-4uEtGYS/tOqXc74TzF83tM7zKK7rmPmzEFgmM6halx+tnsaBhsjT4kD/yeRbsPq4eQc85L9ViiDPzymRuxInSw==}
 
   less-loader@12.3.0:
     resolution: {integrity: sha512-0M6+uYulvYIWs52y0LqN4+QM9TqWAohYSNTo4htE8Z7Cn3G/qQMEmktfHmyJT23k+20kU9zHH2wrfFXkxNLtVw==}
@@ -10123,6 +10129,16 @@ snapshots:
       '@leafer/core': 1.6.7
       '@leafer/interface': 1.6.7
       '@leafer/partner': 1.6.7
+
+  leafer-x-ruler@2.0.0(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-in/resize@1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7))(@leafer-ui/draw@1.6.7):
+    dependencies:
+      '@leafer-in/editor': 1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-in/resize@1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7))(@leafer-ui/core@1.6.7)(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7)
+      '@leafer-ui/core': 1.6.7
+      '@leafer-ui/interface': 1.6.7
+    transitivePeerDependencies:
+      - '@leafer-in/interface'
+      - '@leafer-in/resize'
+      - '@leafer-ui/draw'
 
   less-loader@12.3.0(less@4.3.0):
     dependencies:

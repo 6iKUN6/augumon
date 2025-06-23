@@ -25,8 +25,7 @@ export default defineNuxtConfig({
   ],
   tailwindcss: {
     configPath: './tailwind.config.js',
-    cssPath: [`~/assets/css/tailwind.css`],
-    injectPosition: 'first',
+    cssPath: [`~/assets/css/tailwind.css`, { injectPosition: 'first' }],
     exposeConfig: true,
     viewer: false,
   },
@@ -58,5 +57,15 @@ export default defineNuxtConfig({
         redirect: '/home',
       },
     },
+  },
+  colorMode: {
+    preference: 'dark', // 默认主题
+    fallback: 'light', // 回退主题
+    hid: 'nuxt-color-mode-script',
+    globalName: '__NUXT_COLOR_MODE__',
+    componentName: 'ColorScheme',
+    classPrefix: '',
+    classSuffix: '',
+    storageKey: 'nuxt-color-mode',
   },
 });
