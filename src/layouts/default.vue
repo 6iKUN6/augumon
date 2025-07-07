@@ -14,7 +14,7 @@
             <!-- Header 在 SidebarInset 内部 -->
             <LayoutHeader />
             <!-- 主要内容区域 -->
-            <main class="flex-1 w-full min-h-[calc(100vh-60px)] overflow-x-auto">
+            <main class="flex-1 w-full overflow-x-auto">
               <slot />
             </main>
           </div>

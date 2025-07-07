@@ -23,6 +23,9 @@ importers:
       '@leafer-in/resize':
         specifier: ^1.6.2
         version: 1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7)
+      '@leafer-in/view':
+        specifier: ^1.7.0
+        version: 1.7.0(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7)
       '@leafer-in/viewport':
         specifier: ^1.6.2
         version: 1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/core@1.6.7)(@leafer-ui/interface@1.6.7)
@@ -50,6 +53,9 @@ importers:
       leafer-ui:
         specifier: ^1.6.1
         version: 1.6.7
+      leafer-x-dot-matrix:
+        specifier: ^1.0.2
+        version: 1.0.2(@leafer-ui/core@1.6.7)(@leafer-ui/interface@1.6.7)
       leafer-x-ruler:
         specifier: ^2.0.0
         version: 2.0.0(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-in/resize@1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7))(@leafer-ui/draw@1.6.7)
@@ -715,6 +721,13 @@ packages:
       '@leafer-in/interface': ^1.6.7
       '@leafer-ui/draw': ^1.6.7
       '@leafer-ui/interface': ^1.6.7
+
+  '@leafer-in/view@1.7.0':
+    resolution: {integrity: sha512-Isdb8rRNdtBaObeHVafezwVVQYd4ZwN6RCo87fTNBSiOtI95dmkjFMTHZAdHwEHsjfy75QA0in/1HWrVKABbSA==}
+    peerDependencies:
+      '@leafer-in/interface': ^1.7.0
+      '@leafer-ui/draw': ^1.7.0
+      '@leafer-ui/interface': ^1.7.0
 
   '@leafer-in/viewport@1.6.7':
     resolution: {integrity: sha512-SrA0tO3dDOhRY8xcVcdqlYkSLC09HDGkP7mbROdZ2lMaE/S0I6PM64X6nHae0D0Z11aVGCZ4lcWC1SOHY7XLDA==}
@@ -3722,6 +3735,12 @@ packages:
   leafer-ui@1.6.7:
     resolution: {integrity: sha512-T0NU9UeDa8WNr9fJPnZSkASIgU+MY4zH5voVwBeJKVCyRBSVsosYeChyekxBz4SyD2Qhr61CGkK4Ga+f1ji8LA==}
 
+  leafer-x-dot-matrix@1.0.2:
+    resolution: {integrity: sha512-fWnuuoEzs9ZkaJL/gsIx7YjE7r6Hp9QT50lZTqMqPk6SctfWwH52671NkGsKCC1hM/+58OJPkmyHEZik1lWYMw==}
+    peerDependencies:
+      '@leafer-ui/core': '>=1.0.9'
+      '@leafer-ui/interface': '>=1.0.9'
+
   leafer-x-ruler@2.0.0:
     resolution: {integrity: sha512-4uEtGYS/tOqXc74TzF83tM7zKK7rmPmzEFgmM6halx+tnsaBhsjT4kD/yeRbsPq4eQc85L9ViiDPzymRuxInSw==}
 
@@ -6593,6 +6612,12 @@ snapshots:
       '@leafer/interface': 1.6.7
 
   '@leafer-in/resize@1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7)':
+    dependencies:
+      '@leafer-in/interface': 1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7)
+      '@leafer-ui/draw': 1.6.7
+      '@leafer-ui/interface': 1.6.7
+
+  '@leafer-in/view@1.7.0(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7)':
     dependencies:
       '@leafer-in/interface': 1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7)
       '@leafer-ui/draw': 1.6.7
@@ -10129,6 +10154,11 @@ snapshots:
       '@leafer/core': 1.6.7
       '@leafer/interface': 1.6.7
       '@leafer/partner': 1.6.7
+
+  leafer-x-dot-matrix@1.0.2(@leafer-ui/core@1.6.7)(@leafer-ui/interface@1.6.7):
+    dependencies:
+      '@leafer-ui/core': 1.6.7
+      '@leafer-ui/interface': 1.6.7
 
   leafer-x-ruler@2.0.0(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-in/resize@1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7))(@leafer-ui/draw@1.6.7):
     dependencies:
