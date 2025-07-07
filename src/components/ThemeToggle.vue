@@ -5,11 +5,11 @@
       variant="ghost"
       size="sm"
       class="p-2 relative z-10 hover:bg-muted/50 transition-colors duration-200"
-      :aria-label="themeStore.isDark ? '切换到亮色主题' : '切换到暗色主题'"
+      :aria-label="colorMode.value === 'dark' ? '切换到亮色主题' : '切换到暗色主题'"
       @click="handleToggle"
     >
       <Transition name="icon-rotate" mode="out-in">
-        <Sun v-if="!themeStore.isDark" key="sun" class="h-4 w-4" />
+        <Sun v-if="colorMode.value === 'light'" key="sun" class="h-4 w-4" />
         <Moon v-else key="moon" class="h-4 w-4" />
       </Transition>
     </Button>
@@ -19,10 +19,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { Button } from '@/components/ui/button';
-import { useThemeStore } from '@/stores/theme';
 import { Sun, Moon } from 'lucide-vue-next';
 
-const themeStore = useThemeStore();
+const colorMode = useColorMode();
 const toggleButton = ref<HTMLElement>();
 
 const handleToggle = async (event: MouseEvent) => {
@@ -32,7 +31,7 @@ const handleToggle = async (event: MouseEvent) => {
   // 判断浏览器是否兼容 View Transitions API
   if (!('startViewTransition' in document)) {
     console.warn('浏览器不支持 View Transitions API，使用普通切换');
-    themeStore.toggleTheme();
+    colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
     return;
   }
 
@@ -44,26 +43,16 @@ const handleToggle = async (event: MouseEvent) => {
   );
 
   console.log('动画参数:', { x, y, endRadius });
-  console.log('切换前 Pinia store 状态:', themeStore.isDark);
+  console.log('切换前主题状态:', colorMode.value);
 
   // 使用 View Transitions API
   const transition = document.startViewTransition!(() => {
     console.log('View Transition 回调执行');
 
-    // 先更新 Pinia store 状态
-    themeStore.toggleTheme();
+    // 切换主题
+    colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
 
-    // 然后同步更新 DOM 类
-    const root = document.documentElement;
-    if (themeStore.isDark) {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    } else {
-      root.classList.add('light');
-      root.classList.remove('dark');
-    }
-
-    console.log('DOM 类切换完成，新的主题状态:', themeStore.isDark ? 'dark' : 'light');
+    console.log('主题切换完成，新的主题状态:', colorMode.value);
   });
 
   // 等待过渡准备就绪

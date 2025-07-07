@@ -15,15 +15,17 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxt/eslint',
+    '@nuxt/image',
     '@nuxt/test-utils',
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt',
     '@nuxtjs/tailwindcss',
     'shadcn-nuxt',
+    '@nuxtjs/color-mode',
   ],
   tailwindcss: {
     configPath: './tailwind.config.js',
-    cssPath: './src/assets/css/globals.css',
+    cssPath: [`~/assets/css/tailwind.css`, { injectPosition: 'first' }],
     exposeConfig: true,
     viewer: false,
   },
@@ -55,5 +57,15 @@ export default defineNuxtConfig({
         redirect: '/home',
       },
     },
+  },
+  colorMode: {
+    preference: 'dark', // 默认主题
+    fallback: 'light', // 回退主题
+    hid: 'nuxt-color-mode-script',
+    globalName: '__NUXT_COLOR_MODE__',
+    componentName: 'ColorScheme',
+    classPrefix: '',
+    classSuffix: '',
+    storageKey: 'nuxt-color-mode',
   },
 });
