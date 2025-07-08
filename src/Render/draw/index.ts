@@ -1,7 +1,8 @@
 import { App } from 'leafer-ui';
-import type { IRectInputData, ITextInputData, IImageInputData } from 'leafer-ui';
+import type { IRectInputData, ITextInputData, IImageInputData, IAnimateEasing } from 'leafer-ui';
 import { Editor } from '@leafer-in/editor';
 import '@leafer-in/viewport';
+import '@leafer-in/animate';
 import { Ruler } from 'leafer-x-ruler';
 import { DotMatrix } from 'leafer-x-dot-matrix';
 
@@ -92,6 +93,33 @@ class Draw {
     this.app.tree.add(image);
 
     return image;
+  }
+
+  /**
+   * 带动画效果的回到原点方法
+   * @param duration 动画持续时间（毫秒）
+   * @param easing 缓动函数
+   */
+  animateToOrigin(duration = 1, easing: IAnimateEasing = 'ease-out') {
+    if (!this.app.zoomLayer) return;
+
+    const currentX = this.app.zoomLayer.x;
+    const currentY = this.app.zoomLayer.y;
+
+    // 如果已经在原点，不需要动画
+    if (currentX === 0 && currentY === 0) return;
+
+    // 使用 leaferjs 的动画 API
+    this.app.zoomLayer.animate(
+      {
+        x: 0,
+        y: 0,
+      },
+      {
+        duration: duration,
+        easing: easing,
+      }
+    );
   }
 }
 
