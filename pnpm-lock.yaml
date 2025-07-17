@@ -23,6 +23,9 @@ importers:
       '@leafer-in/resize':
         specifier: ^1.6.2
         version: 1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7)
+      '@leafer-in/text-editor':
+        specifier: ^1.8.0
+        version: 1.8.0(@leafer-in/editor@1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-in/resize@1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7))(@leafer-ui/core@1.6.7)(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7))(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/core@1.6.7)(@leafer-ui/interface@1.6.7)
       '@leafer-in/view':
         specifier: ^1.7.0
         version: 1.7.0(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7)
@@ -721,6 +724,14 @@ packages:
       '@leafer-in/interface': ^1.6.7
       '@leafer-ui/draw': ^1.6.7
       '@leafer-ui/interface': ^1.6.7
+
+  '@leafer-in/text-editor@1.8.0':
+    resolution: {integrity: sha512-B+ifyyHu3/FMqtwOGte1lgJC46IjJ5Qk8fNjL2gbMJi9MDOqRYdHgirDCFz/jFUDku8YQNznb0hRH4Z24KORYQ==}
+    peerDependencies:
+      '@leafer-in/editor': ^1.8.0
+      '@leafer-in/interface': ^1.8.0
+      '@leafer-ui/core': ^1.8.0
+      '@leafer-ui/interface': ^1.8.0
 
   '@leafer-in/view@1.7.0':
     resolution: {integrity: sha512-Isdb8rRNdtBaObeHVafezwVVQYd4ZwN6RCo87fTNBSiOtI95dmkjFMTHZAdHwEHsjfy75QA0in/1HWrVKABbSA==}
@@ -6615,6 +6626,13 @@ snapshots:
     dependencies:
       '@leafer-in/interface': 1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7)
       '@leafer-ui/draw': 1.6.7
+      '@leafer-ui/interface': 1.6.7
+
+  '@leafer-in/text-editor@1.8.0(@leafer-in/editor@1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-in/resize@1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7))(@leafer-ui/core@1.6.7)(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7))(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/core@1.6.7)(@leafer-ui/interface@1.6.7)':
+    dependencies:
+      '@leafer-in/editor': 1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-in/resize@1.6.7(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7))(@leafer-ui/core@1.6.7)(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7)
+      '@leafer-in/interface': 1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7)
+      '@leafer-ui/core': 1.6.7
       '@leafer-ui/interface': 1.6.7
 
   '@leafer-in/view@1.7.0(@leafer-in/interface@1.6.7(@leafer-ui/interface@1.6.7)(@leafer/interface@1.6.7))(@leafer-ui/draw@1.6.7)(@leafer-ui/interface@1.6.7)':

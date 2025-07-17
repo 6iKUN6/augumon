@@ -25,8 +25,8 @@ const colorMode = useColorMode();
 const toggleButton = ref<HTMLElement>();
 
 const handleToggle = async (event: MouseEvent) => {
-  console.info('主题切换开始');
-  console.info('View Transitions API 支持:', 'startViewTransition' in document);
+  // console.info('主题切换开始');
+  // console.info('View Transitions API 支持:', 'startViewTransition' in document);
 
   // 判断浏览器是否兼容 View Transitions API
   if (!('startViewTransition' in document)) {
@@ -47,22 +47,22 @@ const handleToggle = async (event: MouseEvent) => {
 
   // 使用 View Transitions API
   const transition = document.startViewTransition!(() => {
-    console.log('View Transition 回调执行');
+    // console.log('View Transition 回调执行');
 
     // 切换主题
     colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark';
 
-    console.log('主题切换完成，新的主题状态:', colorMode.value);
+    // console.log('主题切换完成，新的主题状态:', colorMode.value);
   });
 
   // 等待过渡准备就绪
   transition.ready
     .then(() => {
-      console.log('View Transition 准备就绪，创建动画');
+      // console.log('View Transition 准备就绪，创建动画');
       const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`];
 
-      console.log('创建扩张动画，clipPath:', clipPath);
-      console.log('使用伪元素: ::view-transition-new(root)');
+      // console.log('创建扩张动画，clipPath:', clipPath);
+      // console.log('使用伪元素: ::view-transition-new(root)');
 
       // 始终对新主题做扩张动画
       const animation = document.documentElement.animate(
@@ -77,7 +77,10 @@ const handleToggle = async (event: MouseEvent) => {
       );
 
       animation.addEventListener('finish', () => {
-        console.log('动画完成');
+        console.info(
+          '%c动画完成',
+          'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 8px 16px; border-radius: 8px; font-weight: bold; font-size: 14px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);'
+        );
       });
     })
     .catch((error) => {

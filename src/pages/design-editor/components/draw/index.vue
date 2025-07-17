@@ -3,6 +3,10 @@
     <div class="size-full relative">
       <LocateTools class="absolute bottom-4 left-8" @locate-fixed="handleLocateFixed" />
       <CreateTools class="absolute bottom-4 right-4" @user-tool="handleUserTool" />
+      <div
+        ref="miniMap"
+        class="absolute top-6 right-6 z-10 w-[200px] h-[150px] border-2 border-blue-300 flex items-center justify-center bg-[#f0f0f0] rounded-md"
+      ></div>
     </div>
   </div>
 </template>
@@ -14,11 +18,14 @@ import LocateTools from '@/components/locate-tools/index.vue';
 const drawCanvas = ref<HTMLDivElement | null>(null);
 
 const draw = ref<Draw | null>(null);
+const miniMap = useTemplateRef('miniMap');
 
 onMounted(() => {
   if (drawCanvas.value) {
     draw.value = new Draw(drawCanvas.value);
-    // console.log('app', draw.value);
+    if (miniMap.value) {
+      draw.value.initMiniMap(miniMap.value);
+    }
   }
 });
 
