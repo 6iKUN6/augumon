@@ -1,7 +1,12 @@
 <template>
   <div class="flex items-center gap-2 shadow-lg rounded-md p-2 bg-card border border-border z-10">
     <ToggleGroup v-model="activeTool" type="single">
-      <ToggleGroupItem v-for="tool in tools" :key="tool.name" :value="tool.value">
+      <ToggleGroupItem
+        v-for="tool in tools"
+        :key="tool.name"
+        :value="tool.value"
+        @click="emit('user-tool', tool.value)"
+      >
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
@@ -23,6 +28,8 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 const activeTool = ref('');
+
+const emit = defineEmits(['user-tool']);
 
 const tools = [
   {

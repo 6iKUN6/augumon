@@ -140,24 +140,24 @@ const createImage = (props: IImageInputData) => {
 
 //文本
 const defaultTextProps: ITextInputData = {
-  text: 'Hello World',
+  // text: 'Hello World',
   placeholder: '(点击输入文本)',
   placeholderColor: '#999',
   fill: 'red',
-  fontSize: 100,
+  // fontSize: 100,
   fontFamily: '',
   fontWeight: 'normal',
   italic: false, //斜体
   textDecoration: 'none', //下划线
   letterSpacing: 0, //字距
-  lineHeight: 1.5, //行高
+  // lineHeight: 1.5, //行高
   textWrap: 'none', //换行
   textOverflow: '...', //溢出
   textAlign: 'left',
   verticalAlign: 'middle',
   autoSizeAlign: true, //当文本没有宽高且有对齐属性时，是否对齐起点坐标
   padding: [],
-  resizeFontSize: true, //自动宽高的文本是否通过修改字体大小进行 resize
+  // resizeFontSize: true, //自动宽高的文本是否通过修改字体大小进行 resize
   boxStyle: {},
   hoverStyle: {},
 };

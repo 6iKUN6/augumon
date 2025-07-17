@@ -21,6 +21,7 @@
     "@leafer-in/editor": "^1.6.2",
     "@leafer-in/filter": "^1.6.2",
     "@leafer-in/resize": "^1.6.2",
+    "@leafer-in/text-editor": "^1.8.0",
     "@leafer-in/view": "^1.7.0",
     "@leafer-in/viewport": "^1.6.2",
     "@nuxt/image": "^1.10.0",
