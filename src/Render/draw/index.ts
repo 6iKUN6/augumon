@@ -84,7 +84,7 @@ class Draw {
       this.miniMapApp.add(targetNode);
     });
     this.app.tree.on(PropertyEvent.CHANGE, (e) => {
-      console.log('change-event', e);
+      // console.log('change-event', e);
 
       //监听属性改变，元素变形、拖拽等
       if (e.target.mapEl) {
