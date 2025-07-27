@@ -1,5 +1,11 @@
-import { App, Leafer, ChildEvent, PropertyEvent } from 'leafer-ui';
-import type { IRectInputData, ITextInputData, IImageInputData, IAnimateEasing } from 'leafer-ui';
+import { App, Leafer, ChildEvent, PropertyEvent, PointerEvent } from 'leafer-ui';
+import type {
+  IRectInputData,
+  ITextInputData,
+  IImageInputData,
+  IAnimateEasing,
+  UI,
+} from 'leafer-ui';
 import { Editor } from '@leafer-in/editor';
 import '@leafer-in/viewport';
 import '@leafer-in/animate';
@@ -143,6 +149,11 @@ class Draw {
         easing: easing,
       }
     );
+  }
+
+  //右键菜单
+  activeNodeContextMenu(node: UI) {
+    node.on(PointerEvent.MENU);
   }
 }
 
