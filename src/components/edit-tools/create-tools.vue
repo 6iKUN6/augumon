@@ -84,6 +84,8 @@ const tools = [
     click: () => {
       props.canvasApp?.addRect({
         editable: true,
+        x: 200,
+        y: 200,
       });
     },
   },

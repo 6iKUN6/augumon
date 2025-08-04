@@ -14,7 +14,7 @@ import { Ruler } from 'leafer-x-ruler';
 import { DotMatrix } from 'leafer-x-dot-matrix';
 
 import { createRect, createText, createImage } from '../nodes/createNode';
-import useNodeMenuStore from '@/stores/node-menu';
+import useNodeMenuStore from '@/stores/nodeAttrs';
 
 class Draw {
   private app: App;
@@ -29,13 +29,18 @@ class Draw {
     this.app.sky.add((this.app.editor = new Editor()));
     this.drawGround();
 
-    const { clearActivedMenuNode } = useNodeMenuStore();
-    this.app.on(PointerEvent.MENU, (e) => {
-      console.log('右键菜单触发-画布空白');
+    const { clearActivedMenuNode, clearActiveToolNode } = useNodeMenuStore();
+
+    // 监听右键菜单事件
+    this.app.on([PointerEvent.MENU, PointerEvent.TAP], (e) => {
       if (e.target.tag === 'App') {
+        console.log('右键菜单触发-画布空白');
         clearActivedMenuNode();
+        clearActiveToolNode();
       }
     });
+
+    // 点击事件现在由 Vue 组件统一处理
   }
 
   public getApp() {
@@ -167,12 +172,16 @@ class Draw {
 
   //右键菜单
   activeNodeContextMenu(node: UI) {
-    const { setActivedMenuNode } = useNodeMenuStore();
-    node.on(PointerEvent.MENU, (e) => {
-      console.log('右键菜单触发', e.target._tag);
+    const { setActivedMenuNode, setActiveToolNode } = useNodeMenuStore();
+    node.on(PointerEvent.MENU, () => {
+      console.log('右键菜单触发', node);
       setActivedMenuNode(node);
       // 不阻止事件，让Vue的右键菜单组件能够处理
       // e.stop();
+    });
+    node.on([PointerEvent.TAP], () => {
+      console.log('左键点击事件触发', node.tag);
+      setActiveToolNode(node);
     });
   }
 }
