@@ -125,8 +125,8 @@ const createPen = () => {
 //图片
 const defaultImageProps: IImageInputData = {
   url: 'https://cdn.leafer-ui.com/images/logo.png',
-  width: 100,
-  height: 100,
+  width: 200,
+  // height: 100,
   lazy: false,
   pixelRatio: 1,
   placeholderColor: '#999',
