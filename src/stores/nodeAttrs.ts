@@ -13,10 +13,6 @@ const useNodeMenuStore = defineStore('nodeMenu', () => {
   const activeToolNode = shallowRef<UI | null>(null);
   const nodePosition = ref<NodePosition | null>(null);
 
-  watch(nodePosition, () => {
-    console.log('nodePosition', nodePosition.value);
-  });
-
   const setFocusNodePosition = (node: UI) => {
     console.log('setFocusNodePosition', node);
 

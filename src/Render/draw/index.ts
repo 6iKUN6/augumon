@@ -15,9 +15,11 @@ import { DotMatrix } from 'leafer-x-dot-matrix';
 
 import { createRect, createText, createImage } from '../nodes/createNode';
 import useNodeMenuStore from '@/stores/nodeAttrs';
+import ContextMenuTools from '../tools/context-menu';
 
 class Draw {
   private app: App;
+  public contextMenuTools: ContextMenuTools;
 
   constructor(appView: object | string) {
     this.app = new App({
@@ -28,6 +30,15 @@ class Draw {
     });
     this.app.sky.add((this.app.editor = new Editor()));
     this.drawGround();
+
+    // 初始化右键菜单工具
+    this.contextMenuTools = new ContextMenuTools(this.app);
+    // 注入节点激活方法
+    this.contextMenuTools.setActiveNodeContextMenu((node: UI) => {
+      this.activeNodeContextMenu(node);
+    });
+    // 初始化快捷键
+    this.contextMenuTools.initHotkeys();
 
     const { clearActivedMenuNode, clearActiveToolNode } = useNodeMenuStore();
 
@@ -183,6 +194,15 @@ class Draw {
       console.log('左键点击事件触发', node.tag);
       setActiveToolNode(node);
     });
+  }
+
+  /**
+   * 销毁Draw实例，清理资源
+   */
+  destroy() {
+    // 销毁快捷键
+    this.contextMenuTools?.destroyHotkeys();
+    console.log('Draw instance destroyed');
   }
 }
 

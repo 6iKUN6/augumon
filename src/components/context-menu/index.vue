@@ -284,12 +284,6 @@ const handleContextMenu = (event: MouseEvent) => {
     y: Math.min(Math.max(0, y), maxY),
   };
 
-  // console.log('右键菜单触发', {
-  //   position: menuPosition.value,
-  //   hasSelection: hasSelection.value,
-  //   selectedNode: props.selectedNode,
-  // });
-
   // 显示菜单
   isOpen.value = true;
   showAlign.value = false;

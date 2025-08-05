@@ -31,8 +31,18 @@
 </template>
 
 <script setup lang="ts">
-// import { Canvas } from 'leafer-ui';
-import { Pointer, MousePointer2, Type, Image, Bot, Square, Circle, Smile } from 'lucide-vue-next';
+import {
+  Pointer,
+  MousePointer2,
+  Type,
+  Image,
+  Bot,
+  Square,
+  Circle,
+  Smile,
+  Redo,
+  Undo,
+} from 'lucide-vue-next';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
@@ -102,6 +112,18 @@ const tools = [
     desc: '表情工具',
   },
   {
+    name: '撤销',
+    icon: Undo,
+    value: 'undo',
+    desc: '撤销工具',
+  },
+  {
+    name: '重做',
+    icon: Redo,
+    value: 'redo',
+    desc: '撤销工具',
+  },
+  {
     name: 'AI',
     icon: Bot,
     value: 'ai',
@@ -118,12 +140,6 @@ const handleToolClick = (tool: any) => {
 };
 
 const handleSelectImage = (url: string) => {
-  // if (url.endsWith('.gif')) {
-  //   const canvas = new Canvas({ width: 100, url, editable: true });
-  //   props.canvasApp?.getApp().tree.add(canvas);
-  //   return;
-  // }
-
   props.canvasApp?.addImage({
     url,
     editable: true,
