@@ -10,12 +10,16 @@ interface NodePosition {
 
 const useNodeMenuStore = defineStore('nodeMenu', () => {
   const activedMenuNode = shallowRef<UI | null>(null);
-  const activeToolNode = shallowRef<UI | null>(null);
+  const focusNode = shallowRef<UI | null>(null); //选中的元素，左键
   const nodePosition = ref<NodePosition | null>(null);
+  const contextMenuPosition = ref<{ x: number; y: number }>();
+  const showContextMenu = ref(false);
+
+  watch(focusNode, () => {
+    console.info('选中元素发生变化', focusNode.value);
+  });
 
   const setFocusNodePosition = (node: UI) => {
-    console.log('setFocusNodePosition', node);
-
     nodePosition.value = {
       x: node.x || 0,
       y: node.y || 0,
@@ -37,23 +41,45 @@ const useNodeMenuStore = defineStore('nodeMenu', () => {
   const setActiveToolNode = (node: UI) => {
     console.log('setActiveToolNode', node);
 
-    activeToolNode.value = node;
+    focusNode.value = node;
     setFocusNodePosition(node);
   };
 
   const clearActiveToolNode = () => {
-    activeToolNode.value = null;
+    focusNode.value = null;
+  };
+
+  const setContextMenuPosition = (x: number, y: number) => {
+    contextMenuPosition.value = { x, y };
+  };
+
+  const clearContextMenuPosition = () => {
+    contextMenuPosition.value = { x: 0, y: 0 };
+  };
+
+  const setShowContextMenu = (show: boolean) => {
+    showContextMenu.value = show;
+  };
+
+  const closeContextMenu = () => {
+    showContextMenu.value = false;
   };
 
   return {
+    focusNode,
+    showContextMenu,
     activedMenuNode,
     nodePosition,
+    contextMenuPosition,
     setActivedMenuNode,
     clearActivedMenuNode,
-    activeToolNode,
     setActiveToolNode,
     clearActiveToolNode,
     setFocusNodePosition,
+    setContextMenuPosition,
+    clearContextMenuPosition,
+    setShowContextMenu,
+    closeContextMenu,
   };
 });
 

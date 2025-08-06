@@ -1,12 +1,8 @@
 <template>
   <div ref="drawCanvas" class="w-full h-full flex items-center justify-center">
-    <div class="size-full relative">
+    <div id="draw-canvas" class="size-full relative">
       <!-- 编辑工具 - 显示在选中元素上方 -->
-      <div
-        v-if="focusNode && nodePosition"
-        class="absolute z-30 transition-all duration-200 ease-out"
-        :style="toolPosition"
-      >
+      <div v-if="focusNode && nodePosition" class="absolute z-30" :style="toolPosition">
         <!-- 文本编辑工具 -->
         <TextTools v-if="isTextNode" :selected-node="focusNode" />
         <!-- 矩形编辑工具 -->
@@ -22,8 +18,10 @@
         class="absolute top-6 right-6 z-10 w-[200px] h-[150px] border-2 border-blue-300 flex items-center justify-center bg-[#f0f0f0] rounded-md"
       ></div>
       <ContextMenu
+        v-if="showContextMenu"
         :selected-node="selectedNode"
         :has-clipboard="hasClipboard"
+        :position="contextMenuPosition"
         @align="handleAlign"
         @copy="handleCopy"
         @paste="handlePaste"
@@ -61,7 +59,9 @@ const miniMap = useTemplateRef('miniMap');
 const nodeMenuStore = useNodeMenuStore();
 const selectedNode = computed(() => nodeMenuStore.activedMenuNode); //显示菜单的节点
 const nodePosition = computed(() => nodeMenuStore.nodePosition);
-const focusNode = computed(() => nodeMenuStore.activeToolNode); //显示工具的节点
+const focusNode = computed(() => nodeMenuStore.focusNode); //显示工具的节点
+const contextMenuPosition = computed(() => nodeMenuStore.contextMenuPosition);
+const showContextMenu = computed(() => nodeMenuStore.showContextMenu);
 
 // 节点类型检测
 const isTextNode = computed(() => {

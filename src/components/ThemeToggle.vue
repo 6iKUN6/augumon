@@ -76,12 +76,7 @@ const handleToggle = async (event: MouseEvent) => {
         } as any
       );
 
-      animation.addEventListener('finish', () => {
-        console.info(
-          '%c动画完成',
-          'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 8px 16px; border-radius: 8px; font-weight: bold; font-size: 14px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);'
-        );
-      });
+      animation.addEventListener('finish', () => {});
     })
     .catch((error) => {
       console.error('View Transition 错误:', error);

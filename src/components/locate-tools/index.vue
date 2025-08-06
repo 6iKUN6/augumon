@@ -1,5 +1,5 @@
 <template>
-  <div class="z-10 shadow-lg rounded-md p-2 bg-card border border-border">
+  <div class="z-10 shadow-lg rounded-md p-2 bg-card border border-border" @click.stop>
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger>

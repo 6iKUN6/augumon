@@ -12,6 +12,7 @@ import '@leafer-in/animate';
 import '@leafer-in/text-editor';
 import { Ruler } from 'leafer-x-ruler';
 import { DotMatrix } from 'leafer-x-dot-matrix';
+import { throttle } from 'lodash-es';
 
 import { createRect, createText, createImage } from '../nodes/createNode';
 import useNodeMenuStore from '@/stores/nodeAttrs';
@@ -40,18 +41,40 @@ class Draw {
     // 初始化快捷键
     this.contextMenuTools.initHotkeys();
 
-    const { clearActivedMenuNode, clearActiveToolNode } = useNodeMenuStore();
-
     // 监听右键菜单事件
-    this.app.on([PointerEvent.MENU, PointerEvent.TAP], (e) => {
-      if (e.target.tag === 'App') {
-        console.log('右键菜单触发-画布空白');
+    this.app.on([PointerEvent.CLICK], (e) => {
+      const { clearActivedMenuNode, clearActiveToolNode, closeContextMenu } = useNodeMenuStore();
+
+      // 判断是否是画布空白区域
+      if (e.target.tag === 'App' && e.origin.target.id === 'draw-canvas') {
+        console.log('画布空白(左键)');
         clearActivedMenuNode();
         clearActiveToolNode();
+
+        closeContextMenu();
       }
     });
 
-    // 点击事件现在由 Vue 组件统一处理
+    this.app.on([PointerEvent.MENU], (e) => {
+      const {
+        clearActivedMenuNode,
+        clearActiveToolNode,
+        setShowContextMenu,
+        setContextMenuPosition,
+      } = useNodeMenuStore();
+      if (e.target.tag === 'App' && e.origin.target.id === 'draw-canvas') {
+        console.log('画布空白(右键)');
+        clearActivedMenuNode();
+        clearActiveToolNode();
+
+        //唤起菜单
+        const { clientY, clientX } = e.origin;
+        setContextMenuPosition(clientX, clientY);
+        setShowContextMenu(true);
+      }
+    });
+
+    this.listenAppProperty();
   }
 
   public getApp() {
@@ -100,7 +123,7 @@ class Draw {
   private miniMapScale = 0.1;
   //初始化小地图
   initMiniMap(container: HTMLDivElement) {
-    console.log('初始化小地图');
+    console.info('初始化小地图');
     this.miniMapApp = new Leafer({
       view: container,
       width: this.app.width! * this.miniMapScale,
@@ -183,16 +206,21 @@ class Draw {
 
   //右键菜单
   activeNodeContextMenu(node: UI) {
-    const { setActivedMenuNode, setActiveToolNode } = useNodeMenuStore();
-    node.on(PointerEvent.MENU, () => {
+    const { setActivedMenuNode, setActiveToolNode, setShowContextMenu, setContextMenuPosition } =
+      useNodeMenuStore();
+    node.on(PointerEvent.MENU, (e) => {
       console.log('右键菜单触发', node);
       setActivedMenuNode(node);
-      // 不阻止事件，让Vue的右键菜单组件能够处理
-      // e.stop();
+      setShowContextMenu(true);
+      const { clientX, clientY } = e.origin;
+      setContextMenuPosition(clientX, clientY);
+
+      e.stop();
     });
-    node.on([PointerEvent.TAP], () => {
+    node.on([PointerEvent.TAP], (e) => {
       console.log('左键点击事件触发', node.tag);
       setActiveToolNode(node);
+      e.stop();
     });
   }
 
@@ -203,6 +231,24 @@ class Draw {
     // 销毁快捷键
     this.contextMenuTools?.destroyHotkeys();
     console.log('Draw instance destroyed');
+  }
+
+  /**
+   * 监听App的属性变化
+   */
+  listenAppProperty() {
+    const menuStore = useNodeMenuStore();
+    this.app.tree.on(
+      PropertyEvent.CHANGE,
+      throttle((e: PropertyEvent) => {
+        // console.log('PropertyEvent.CHANGE-app-tree', e);
+        const node = e.target as UI;
+        //如果当前元素是选中的元素，则更新位置
+        if (menuStore.focusNode === node) {
+          menuStore.setFocusNodePosition(node);
+        }
+      }, 16)
+    );
   }
 }
 
