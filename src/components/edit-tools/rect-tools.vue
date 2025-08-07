@@ -98,6 +98,8 @@ const opacity = ref(1);
 watch(
   () => props.selectedNode,
   (newNode) => {
+    console.log('newNode', newNode);
+
     if (newNode && newNode.tag === 'Rect') {
       // 从选中的矩形节点获取当前属性
       const fillValue = (newNode as any).fill;

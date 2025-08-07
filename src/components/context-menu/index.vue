@@ -1,17 +1,12 @@
 <template>
-  <div class="w-full h-full relative" @contextmenu="handleContextMenu" @click="handleClick">
-    <slot />
-
-    <!-- 使用Teleport将菜单渲染到body，确保定位准确 -->
+  <div @click="handleClick">
     <Teleport to="body">
-      <div v-if="isOpen" class="fixed inset-0 z-40" @click="closeMenu" @contextmenu.prevent></div>
-
+      <div class="fixed inset-0 z-40 size-fit" @click="closeMenu" @contextmenu.prevent></div>
       <div
-        v-if="isOpen"
         class="fixed z-50 min-w-56 bg-popover border border-border rounded-lg shadow-lg py-2"
         :style="{
-          left: menuPosition.x + 'px',
-          top: menuPosition.y + 'px',
+          left: position.x + 'px',
+          top: position.y + 'px',
         }"
         @click.stop
       >
@@ -228,17 +223,21 @@ import {
   ChevronRight,
 } from 'lucide-vue-next';
 
+// import { storeToRefs } from 'pinia';
+
+import useNodeToolAndMenuStore from '@/stores/nodeToolAndMenu';
+
 // 组件属性
 interface Props {
   selectedNode?: any;
   hasClipboard?: boolean;
+  position?: { x: number; y: number };
 }
 
 const props = withDefaults(defineProps<Props>(), {
   hasClipboard: false,
+  position: () => ({ x: 0, y: 0 }),
 });
-
-// 组件事件通过 defineEmits 直接定义
 
 const emit = defineEmits<{
   copy: [];
@@ -254,9 +253,8 @@ const emit = defineEmits<{
   align: [direction: 'left' | 'center' | 'right' | 'top' | 'middle' | 'bottom'];
 }>();
 
-// 菜单状态
-const isOpen = ref(false);
-const menuPosition = ref({ x: 0, y: 0 });
+const { closeContextMenu } = useNodeToolAndMenuStore();
+
 const showAlign = ref(false);
 let alignMenuTimer: number | null = null;
 
@@ -265,46 +263,14 @@ const hasSelection = computed(() => !!props.selectedNode);
 const isLocked = computed(() => props.selectedNode?.locked || false);
 const isVisible = computed(() => props.selectedNode?.visible !== false);
 
-// 右键菜单处理
-const handleContextMenu = (event: MouseEvent) => {
-  event.preventDefault();
-
-  // 计算菜单位置
-  const x = event.clientX;
-  const y = event.clientY;
-
-  // 确保菜单不超出视窗
-  const menuWidth = 250;
-  const menuHeight = 400;
-  const maxX = window.innerWidth - menuWidth;
-  const maxY = window.innerHeight - menuHeight;
-
-  menuPosition.value = {
-    x: Math.min(Math.max(0, x), maxX),
-    y: Math.min(Math.max(0, y), maxY),
-  };
-
-  // console.log('右键菜单触发', {
-  //   position: menuPosition.value,
-  //   hasSelection: hasSelection.value,
-  //   selectedNode: props.selectedNode,
-  // });
-
-  // 显示菜单
-  isOpen.value = true;
-  showAlign.value = false;
-};
-
 // 左键点击处理（关闭菜单）
 const handleClick = (_event: MouseEvent) => {
-  if (isOpen.value) {
-    closeMenu();
-  }
+  closeContextMenu();
 };
 
 // 关闭菜单
 const closeMenu = () => {
-  isOpen.value = false;
+  closeContextMenu();
   showAlign.value = false;
   if (alignMenuTimer) {
     clearTimeout(alignMenuTimer);
@@ -346,7 +312,7 @@ const handleCopy = () => {
 
 const handlePaste = () => {
   // 传递菜单打开时的鼠标位置
-  emit('paste', { x: menuPosition.value.x, y: menuPosition.value.y });
+  emit('paste', { x: props.position.x, y: props.position.y });
   closeMenu();
 };
 
