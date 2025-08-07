@@ -1,5 +1,5 @@
 // import { storeToRefs } from 'pinia';
-// import { useNodeMenuStore } from '@/stores/nodeAttrs';
+// import { useNodeToolAndMenuStore } from '@/stores/nodeAttrs';
 
 const useNodeTools = () => {};
 

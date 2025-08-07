@@ -19,7 +19,7 @@
       ></div>
       <ContextMenu
         v-if="showContextMenu"
-        :selected-node="selectedNode"
+        :selected-node="activedMenuNode"
         :has-clipboard="hasClipboard"
         :position="contextMenuPosition"
         @align="handleAlign"
@@ -41,27 +41,25 @@
 
 <script setup lang="ts">
 import { ref, shallowRef, onMounted, onUnmounted, computed } from 'vue';
+import { storeToRefs } from 'pinia';
 import Draw from '@/Render/draw';
-// import { PropertyEvent, PointerEvent } from 'leafer-ui';
+
 import CreateTools from '@/components/edit-tools/create-tools.vue';
 import TextTools from '@/components/edit-tools/text-tools.vue';
 import RectTools from '@/components/edit-tools/rect-tools.vue';
 import ImageTools from '@/components/edit-tools/image-tools.vue';
 import LocateTools from '@/components/locate-tools/index.vue';
 import ContextMenu from '@/components/context-menu/index.vue';
-import useNodeMenuStore from '@/stores/nodeAttrs';
+import useNodeToolAndMenuStore from '@/stores/nodeToolAndMenu';
 
 const drawCanvas = ref<HTMLDivElement | null>(null);
 const draw = shallowRef<Draw | null>(null);
 const miniMap = useTemplateRef('miniMap');
 
 // 使用 store 管理选中的节点
-const nodeMenuStore = useNodeMenuStore();
-const selectedNode = computed(() => nodeMenuStore.activedMenuNode); //显示菜单的节点
-const nodePosition = computed(() => nodeMenuStore.nodePosition);
-const focusNode = computed(() => nodeMenuStore.focusNode); //显示工具的节点
-const contextMenuPosition = computed(() => nodeMenuStore.contextMenuPosition);
-const showContextMenu = computed(() => nodeMenuStore.showContextMenu);
+const nodeMenuStore = useNodeToolAndMenuStore();
+const { activedMenuNode, nodePosition, focusNode, contextMenuPosition, showContextMenu } =
+  storeToRefs(nodeMenuStore);
 
 // 节点类型检测
 const isTextNode = computed(() => {
@@ -121,12 +119,8 @@ onMounted(() => {
     if (miniMap.value) {
       draw.value.initMiniMap(miniMap.value);
     }
-
-    // 快捷键现在由contextMenuTools管理，在Draw类初始化时自动设置
   }
 });
-
-// 键盘快捷键功能已迁移到contextMenuTools，不再需要手动设置
 
 // 节点位置监听器引用，用于清理
 let currentNodeListener: (() => void) | null = null;
@@ -135,12 +129,6 @@ let updatePositionTimer: ReturnType<typeof setTimeout> | null = null;
 const handleLocateFixed = () => {
   // 使用带动画效果的回到原点方法
   draw.value?.animateToOrigin(1, 'ease-out');
-};
-
-// 操作提示 - 已迁移到contextMenuTools，这里保留为了与其他功能兼容
-const _showMessage = (message: string, type: 'success' | 'info' | 'warning' = 'success') => {
-  // TODO: 可以接入toast组件或通知组件
-  console.log(`[${type.toUpperCase()}] ${message}`);
 };
 
 // 右键菜单操作处理函数 - 现在使用contextMenuTools

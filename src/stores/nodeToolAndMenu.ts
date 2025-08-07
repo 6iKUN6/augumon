@@ -8,7 +8,7 @@ interface NodePosition {
   height: number;
 }
 
-const useNodeMenuStore = defineStore('nodeMenu', () => {
+const useNodeToolAndMenuStore = defineStore('nodeMenu', () => {
   const activedMenuNode = shallowRef<UI | null>(null);
   const focusNode = shallowRef<UI | null>(null); //选中的元素，左键
   const nodePosition = ref<NodePosition | null>(null);
@@ -83,4 +83,4 @@ const useNodeMenuStore = defineStore('nodeMenu', () => {
   };
 });
 
-export default useNodeMenuStore;
+export default useNodeToolAndMenuStore;

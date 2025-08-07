@@ -225,7 +225,7 @@ import {
 
 // import { storeToRefs } from 'pinia';
 
-import useNodeMenuStore from '@/stores/nodeAttrs';
+import useNodeToolAndMenuStore from '@/stores/nodeToolAndMenu';
 
 // 组件属性
 interface Props {
@@ -253,7 +253,7 @@ const emit = defineEmits<{
   align: [direction: 'left' | 'center' | 'right' | 'top' | 'middle' | 'bottom'];
 }>();
 
-const { closeContextMenu } = useNodeMenuStore();
+const { closeContextMenu } = useNodeToolAndMenuStore();
 
 const showAlign = ref(false);
 let alignMenuTimer: number | null = null;

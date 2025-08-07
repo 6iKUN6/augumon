@@ -1,6 +1,6 @@
 import type { App, UI } from 'leafer-ui';
 import hotkeys from 'hotkeys-js';
-import useNodeMenuStore from '@/stores/nodeAttrs';
+import useNodeToolAndMenuStore from '@/stores/nodeToolAndMenu';
 
 class ContextMenuTools {
   private app: App;
@@ -31,7 +31,7 @@ class ContextMenuTools {
    * 复制节点
    */
   copy() {
-    const nodeMenuStore = useNodeMenuStore();
+    const nodeMenuStore = useNodeToolAndMenuStore();
     if (nodeMenuStore.activedMenuNode) {
       this.clipboard = nodeMenuStore.activedMenuNode.clone();
       this.hasClipboard.value = true;
@@ -84,7 +84,7 @@ class ContextMenuTools {
    * 复制副本（复制并偏移位置）
    */
   duplicate() {
-    const nodeMenuStore = useNodeMenuStore();
+    const nodeMenuStore = useNodeToolAndMenuStore();
     if (nodeMenuStore.activedMenuNode) {
       const duplicatedNode = nodeMenuStore.activedMenuNode.clone();
       // 偏移位置避免重叠
@@ -109,7 +109,7 @@ class ContextMenuTools {
    * 删除节点
    */
   delete() {
-    const nodeMenuStore = useNodeMenuStore();
+    const nodeMenuStore = useNodeToolAndMenuStore();
     if (nodeMenuStore.activedMenuNode) {
       nodeMenuStore.activedMenuNode.remove();
       nodeMenuStore.clearActivedMenuNode();
@@ -125,7 +125,7 @@ class ContextMenuTools {
    * 上移一层
    */
   bringForward() {
-    const nodeMenuStore = useNodeMenuStore();
+    const nodeMenuStore = useNodeToolAndMenuStore();
     if (!nodeMenuStore.activedMenuNode) {
       this.showMessage('请先选中一个节点', 'warning');
       return false;
@@ -150,7 +150,7 @@ class ContextMenuTools {
    * 下移一层
    */
   sendBackward() {
-    const nodeMenuStore = useNodeMenuStore();
+    const nodeMenuStore = useNodeToolAndMenuStore();
     if (!nodeMenuStore.activedMenuNode) {
       this.showMessage('请先选中一个节点', 'warning');
       return false;
@@ -175,7 +175,7 @@ class ContextMenuTools {
    * 置顶
    */
   bringToFront() {
-    const nodeMenuStore = useNodeMenuStore();
+    const nodeMenuStore = useNodeToolAndMenuStore();
     if (!nodeMenuStore.activedMenuNode) {
       this.showMessage('请先选中一个节点', 'warning');
       return false;
@@ -194,7 +194,7 @@ class ContextMenuTools {
    * 置底
    */
   sendToBack() {
-    const nodeMenuStore = useNodeMenuStore();
+    const nodeMenuStore = useNodeToolAndMenuStore();
     if (!nodeMenuStore.activedMenuNode) {
       this.showMessage('请先选中一个节点', 'warning');
       return false;
@@ -213,7 +213,7 @@ class ContextMenuTools {
    * 对齐操作
    */
   align(direction: 'left' | 'center' | 'right' | 'top' | 'middle' | 'bottom') {
-    const nodeMenuStore = useNodeMenuStore();
+    const nodeMenuStore = useNodeToolAndMenuStore();
     if (!nodeMenuStore.activedMenuNode) {
       this.showMessage('请先选中一个节点', 'warning');
       return false;
@@ -267,7 +267,7 @@ class ContextMenuTools {
    * 切换锁定状态
    */
   toggleLock() {
-    const nodeMenuStore = useNodeMenuStore();
+    const nodeMenuStore = useNodeToolAndMenuStore();
     if (!nodeMenuStore.activedMenuNode) {
       this.showMessage('请先选中一个节点', 'warning');
       return false;
@@ -283,7 +283,7 @@ class ContextMenuTools {
    * 切换可见性
    */
   toggleVisibility() {
-    const nodeMenuStore = useNodeMenuStore();
+    const nodeMenuStore = useNodeToolAndMenuStore();
     if (!nodeMenuStore.activedMenuNode) {
       this.showMessage('请先选中一个节点', 'warning');
       return false;

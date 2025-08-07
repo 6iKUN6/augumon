@@ -15,7 +15,7 @@ import { DotMatrix } from 'leafer-x-dot-matrix';
 import { throttle } from 'lodash-es';
 
 import { createRect, createText, createImage } from '../nodes/createNode';
-import useNodeMenuStore from '@/stores/nodeAttrs';
+import useNodeToolAndMenuStore from '@/stores/nodeToolAndMenu';
 import ContextMenuTools from '../tools/context-menu';
 
 class Draw {
@@ -43,7 +43,8 @@ class Draw {
 
     // 监听右键菜单事件
     this.app.on([PointerEvent.CLICK], (e) => {
-      const { clearActivedMenuNode, clearActiveToolNode, closeContextMenu } = useNodeMenuStore();
+      const { clearActivedMenuNode, clearActiveToolNode, closeContextMenu } =
+        useNodeToolAndMenuStore();
 
       // 判断是否是画布空白区域
       if (e.target.tag === 'App' && e.origin.target.id === 'draw-canvas') {
@@ -61,7 +62,7 @@ class Draw {
         clearActiveToolNode,
         setShowContextMenu,
         setContextMenuPosition,
-      } = useNodeMenuStore();
+      } = useNodeToolAndMenuStore();
       if (e.target.tag === 'App' && e.origin.target.id === 'draw-canvas') {
         console.log('画布空白(右键)');
         clearActivedMenuNode();
@@ -74,7 +75,7 @@ class Draw {
       }
     });
 
-    this.listenAppProperty();
+    // this.listenAppProperty();
   }
 
   public getApp() {
@@ -158,6 +159,7 @@ class Draw {
     this.app.tree.add(rect);
 
     this.activeNodeContextMenu(rect);
+    this.listenNodeMove(rect);
 
     return rect;
   }
@@ -166,6 +168,7 @@ class Draw {
     this.app.tree.add(text);
 
     this.activeNodeContextMenu(text);
+    this.listenNodeMove(text);
     return text;
   }
   addImage(props?: IImageInputData) {
@@ -173,6 +176,7 @@ class Draw {
     this.app.tree.add(image);
 
     this.activeNodeContextMenu(image);
+    this.listenNodeMove(image);
 
     return image;
   }
@@ -207,7 +211,8 @@ class Draw {
   //右键菜单
   activeNodeContextMenu(node: UI) {
     const { setActivedMenuNode, setActiveToolNode, setShowContextMenu, setContextMenuPosition } =
-      useNodeMenuStore();
+      useNodeToolAndMenuStore();
+
     node.on(PointerEvent.MENU, (e) => {
       console.log('右键菜单触发', node);
       setActivedMenuNode(node);
@@ -237,7 +242,7 @@ class Draw {
    * 监听App的属性变化
    */
   listenAppProperty() {
-    const menuStore = useNodeMenuStore();
+    const menuStore = useNodeToolAndMenuStore();
     this.app.tree.on(
       PropertyEvent.CHANGE,
       throttle((e: PropertyEvent) => {
@@ -249,6 +254,19 @@ class Draw {
         }
       }, 16)
     );
+  }
+
+  /**
+   * 元素移动事件
+   */
+  listenNodeMove(node: UI) {
+    const menuStore = useNodeToolAndMenuStore();
+    node.on(PointerEvent.MOVE, (e) => {
+      console.log('listenNodeMove-e', e);
+      if (menuStore.focusNode === node) {
+        menuStore.setFocusNodePosition(node);
+      }
+    });
   }
 }
 
