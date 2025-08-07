@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-background text-foreground">
+  <div>
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -7,5 +7,13 @@
 </template>
 
 <script setup lang="ts">
-import '@/assets/css/globals.css';
+// 确保主题样式正确应用
+useHead({
+  htmlAttrs: {
+    class: 'min-h-screen bg-background text-foreground',
+  },
+  bodyAttrs: {
+    class: 'min-h-screen bg-background text-foreground',
+  },
+});
 </script>

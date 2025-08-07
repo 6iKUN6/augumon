@@ -1,4 +1,4 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
@@ -6,10 +6,9 @@ export default defineNuxtConfig({
   srcDir: 'src',
   app: {},
   vite: {
-    plugins: [],
+    plugins: [tailwindcss()],
   },
-  // css: ['@arco-design/web-vue/dist/arco.css'],
-  css: [],
+  css: ['~/assets/css/globals.css'],
   imports: {
     dirs: ['stores'],
   },
@@ -19,17 +18,18 @@ export default defineNuxtConfig({
     '@nuxt/test-utils',
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt',
-    '@nuxtjs/tailwindcss',
+    // '@nuxtjs/tailwindcss',
     'shadcn-nuxt',
     '@nuxtjs/color-mode',
     'motion-v/nuxt',
+    '@nuxt/ui',
   ],
-  tailwindcss: {
-    configPath: './tailwind.config.js',
-    cssPath: [`~/assets/css/tailwind.css`, { injectPosition: 'first' }],
-    exposeConfig: true,
-    viewer: false,
-  },
+  // tailwindcss: {
+  //   configPath: './tailwind.config.js',
+  //   cssPath: [`~/assets/css/globals.css`, { injectPosition: 'first' }],
+  //   exposeConfig: true,
+  //   viewer: false,
+  // },
   eslint: {
     config: {
       // ESM 项目可能需要显式声明
@@ -68,5 +68,9 @@ export default defineNuxtConfig({
     classPrefix: '',
     classSuffix: '',
     storageKey: 'nuxt-color-mode',
+    // 使用类名而不是 data 属性，这样与 Tailwind 兼容性更好
+  },
+  ui: {
+    fonts: false,
   },
 });
