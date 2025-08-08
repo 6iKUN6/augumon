@@ -1,4 +1,4 @@
-import { App, Leafer, ChildEvent, PropertyEvent, PointerEvent } from 'leafer-ui';
+import { App, Leafer, ChildEvent, PropertyEvent, PointerEvent, DragEvent } from 'leafer-ui';
 import type {
   IRectInputData,
   ITextInputData,
@@ -222,7 +222,7 @@ class Draw {
 
       e.stop();
     });
-    node.on([PointerEvent.TAP], (e) => {
+    node.on([PointerEvent.CLICK], (e) => {
       console.log('左键点击事件触发', node.tag);
       setActiveToolNode(node);
       e.stop();
@@ -261,8 +261,7 @@ class Draw {
    */
   listenNodeMove(node: UI) {
     const menuStore = useNodeToolAndMenuStore();
-    node.on(PointerEvent.MOVE, (e) => {
-      console.log('listenNodeMove-e', e);
+    node.on(DragEvent.DRAG, () => {
       if (menuStore.focusNode === node) {
         menuStore.setFocusNodePosition(node);
       }

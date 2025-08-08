@@ -15,6 +15,13 @@ const useNodeToolAndMenuStore = defineStore('nodeMenu', () => {
   const contextMenuPosition = ref<{ x: number; y: number }>();
   const showContextMenu = ref(false);
 
+  watch(
+    () => contextMenuPosition.value,
+    (newVal) => {
+      console.log('contextMenuPosition', newVal);
+    }
+  );
+
   watch(focusNode, () => {
     console.info('选中元素发生变化', focusNode.value);
   });
@@ -39,7 +46,7 @@ const useNodeToolAndMenuStore = defineStore('nodeMenu', () => {
   };
 
   const setActiveToolNode = (node: UI) => {
-    console.log('setActiveToolNode', node);
+    // console.log('setActiveToolNode', node);
 
     focusNode.value = node;
     setFocusNodePosition(node);

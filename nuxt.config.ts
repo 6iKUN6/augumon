@@ -18,23 +18,13 @@ export default defineNuxtConfig({
     '@nuxt/test-utils',
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt',
-    // '@nuxtjs/tailwindcss',
     'shadcn-nuxt',
     '@nuxtjs/color-mode',
     'motion-v/nuxt',
     '@nuxt/ui',
   ],
-  // tailwindcss: {
-  //   configPath: './tailwind.config.js',
-  //   cssPath: [`~/assets/css/globals.css`, { injectPosition: 'first' }],
-  //   exposeConfig: true,
-  //   viewer: false,
-  // },
   eslint: {
-    config: {
-      // ESM 项目可能需要显式声明
-      // useEslintrc: true,
-    },
+    config: {},
   },
   routeRules: {
     '/': { redirect: '/home' },
@@ -68,7 +58,6 @@ export default defineNuxtConfig({
     classPrefix: '',
     classSuffix: '',
     storageKey: 'nuxt-color-mode',
-    // 使用类名而不是 data 属性，这样与 Tailwind 兼容性更好
   },
   ui: {
     fonts: false,

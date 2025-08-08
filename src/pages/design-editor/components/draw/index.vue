@@ -102,9 +102,7 @@ const toolPosition = computed(() => {
   }
 
   return {
-    left: `${left}px`,
-    top: `${top}px`,
-    transform: 'translateX(-50%)', // 水平居中
+    transform: `translate(${left}px, ${top}px) translateX(-50%)`,
   };
 });
 
