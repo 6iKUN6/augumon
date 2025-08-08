@@ -14,11 +14,11 @@ pnpm dev
 ```bash
 # 此时在main分支
 git pull #拉取main分支新代码
-git checkout -b <branch-name> #创建并切换到新分支
+git checkout -b #[your branch]#创建并切换到新分支
 
 #老分支开发
 git rebase <branch-name>
-git push origin <branch-name> --force-with-lease
+git push origin #[your branch]--force-with-lease #变基后强制推送
 
 #写代码
 git add .
