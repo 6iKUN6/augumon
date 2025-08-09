@@ -1,45 +1,53 @@
 <template>
-  <div class="min-h-screen bg-background w-full">
-    <SidebarProvider v-model:open="collapsed" class="w-full">
-      <div class="flex min-h-screen w-full">
-        <LayoutSider
-          title="登录"
-          :menu-items="siderMenuItems"
-          :active-index="activeSiderIndex"
-          :collapsed="collapsed"
-          @select-item="handleSiderSelect"
+  <TooltipProvider>
+    <div class="min-h-screen bg-background w-full flex relative">
+      <!-- 侧边栏 -->
+      <LayoutSider
+        :menu-items="siderMenuItems"
+        :active-index="activeSiderIndex"
+        :collapsed="sidebarCollapsed"
+        @select-item="handleSiderSelect"
+        @toggle-collapse="handleToggleCollapse"
+      />
+
+      <!-- 主内容区域 -->
+      <div class="flex-1 min-w-0 flex flex-col h-screen">
+        <!-- Header -->
+        <LayoutHeader
+          :sidebar-collapsed="sidebarCollapsed"
+          @toggle-sidebar="handleToggleCollapse"
         />
-        <SidebarInset class="flex-1 w-full min-w-0">
-          <div class="flex flex-col min-h-screen w-full">
-            <!-- Header 在 SidebarInset 内部 -->
-            <LayoutHeader />
-            <!-- 主要内容区域 -->
-            <main class="flex-1 w-full overflow-x-auto">
-              <slot />
-            </main>
-          </div>
-        </SidebarInset>
+
+        <!-- 主要内容区域 -->
+        <main class="flex-1 overflow-auto bg-background">
+          <slot />
+        </main>
       </div>
-    </SidebarProvider>
-  </div>
+    </div>
+  </TooltipProvider>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { Home, User, Search, HelpCircle, Database } from 'lucide-vue-next';
-import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
+import { TooltipProvider } from '@/components/ui/tooltip';
 import LayoutHeader from './header.vue';
 import LayoutSider from './sider.vue';
 
 const activeSiderIndex = ref<number>(0);
-const collapsed = ref<boolean>(false);
+const sidebarCollapsed = ref<boolean>(false);
 
-// 移除 immediate: true 来避免 SSR 错误
+// 切换侧边栏收起状态
+const handleToggleCollapse = () => {
+  sidebarCollapsed.value = !sidebarCollapsed.value;
+};
+
+// 监听侧边栏状态变化 - 仅在客户端
 if (import.meta.client) {
   watch(
-    () => collapsed.value,
-    () => {
-      console.log('collapsed', collapsed.value);
+    () => sidebarCollapsed.value,
+    (newValue) => {
+      console.log('侧边栏状态:', newValue ? '收起' : '展开');
     }
   );
 }

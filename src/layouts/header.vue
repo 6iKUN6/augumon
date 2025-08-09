@@ -2,7 +2,9 @@
   <div class="flex items-center justify-between px-5 h-[60px] bg-background border-b w-full">
     <div class="flex items-center space-x-3">
       <!-- 侧边栏控制按钮 -->
-      <SidebarTrigger />
+      <Button variant="ghost" size="sm" class="hover:bg-accent" @click="$emit('toggle-sidebar')">
+        <Menu class="h-5 w-5" />
+      </Button>
       <h1 class="text-xl font-bold">
         <span class="text-[#00B42A]">Y</span><span class="text-foreground">RC6</span>
       </h1>
@@ -70,8 +72,19 @@ import {
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
 import ThemeToggle from '@/components/ThemeToggle.vue';
-import { SidebarTrigger } from '@/components/ui/sidebar';
-import { Plus, FolderOpen } from 'lucide-vue-next';
+import { Plus, FolderOpen, Menu } from 'lucide-vue-next';
+
+// 定义 Props
+interface Props {
+  sidebarCollapsed?: boolean;
+}
+
+withDefaults(defineProps<Props>(), {
+  sidebarCollapsed: false,
+});
+
+// 定义 emits
+defineEmits(['toggle-sidebar']);
 
 const authStore = useAuthStore();
 const modalStore = useModalStore();
