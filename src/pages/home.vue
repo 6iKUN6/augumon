@@ -1,9 +1,9 @@
 <template>
   <div class="w-full">
     <!-- 顶部横幅 -->
-    <div class="relative p-6 bg-gradient-to-br from-gray-900 via-black to-gray-800">
+    <div class="relative p-4 md:p-6 bg-gradient-to-br from-gray-900 via-black to-gray-800">
       <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
           <div class="flex flex-col justify-center">
             <h1 class="text-4xl font-bold mb-2 text-white">重新定义您的<br />创作之旅</h1>
             <p class="text-lg mb-4 text-white/80">遇见 XXXX，您的下一代一站式设计创作平台。</p>
@@ -14,14 +14,14 @@
               >立即体验</Button
             >
           </div>
-          <div class="flex justify-end items-center">
+          <div class="flex justify-center lg:justify-end items-center mt-6 lg:mt-0">
             <div class="relative">
-              <div class="absolute -inset-10 opacity-70">
+              <div class="absolute -inset-6 lg:-inset-10 opacity-70">
                 <div
                   class="w-full h-full bg-gradient-to-br from-red-500 to-pink-600 rounded-full blur-xl"
                 ></div>
               </div>
-              <img src="" alt="Atomm Logo" class="relative w-32 h-32" />
+              <img src="" alt="Atomm Logo" class="relative w-24 h-24 lg:w-32 lg:h-32" />
               <!-- /public/logo.svg -->
             </div>
           </div>
@@ -30,9 +30,9 @@
     </div>
 
     <!-- 最近打开区域 -->
-    <div class="p-6 bg-gradient-to-b from-muted/50 to-background">
-      <h2 class="text-xl font-semibold mb-6 text-foreground">最近打开</h2>
-      <div class="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-6">
+    <div class="p-4 md:p-6 bg-gradient-to-b from-muted/50 to-background">
+      <h2 class="text-xl font-semibold mb-4 md:mb-6 text-foreground">最近打开</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
         <div
           class="group relative bg-card rounded-xl shadow-lg border border-border/50 aspect-square flex items-center justify-center flex-col cursor-pointer hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 backdrop-blur-sm"
         >
@@ -67,8 +67,8 @@
     </div>
 
     <!-- 趋势区域 -->
-    <div class="p-6 bg-background">
-      <div class="flex justify-between items-center mb-6">
+    <div class="p-4 md:p-6 bg-background">
+      <div class="flex justify-between items-center mb-4 md:mb-6">
         <h2 class="text-xl font-semibold text-foreground">当前热门</h2>
         <Button
           variant="ghost"
@@ -79,7 +79,7 @@
           <ChevronRight class="ml-1" />
         </Button>
       </div>
-      <div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
         <div
           v-for="(item, index) in trendingItems"
           :key="index"
